@@ -4,28 +4,31 @@ public enum NPCState { Idle, Playing, Leaving }
 
 public class NPC : MonoBehaviour
 {
-    [Header("Base Stats")]
-    public float patienceTotal = 60f;
-    public float baseBetAmount = 10f;
-    public float basePatienceWinGain = 0.5f;
-    public float playInterval = 2f;
+    [Header("Data")]
+    public NPCData data;
 
     public NPCState State { get; private set; } = NPCState.Idle;
 
     private Machine _assignedMachine;
+    private float _patienceTotal;
     private float _patienceMachine;
     private float _playTimer;
 
     private int _totalPlays = 0;
     private int _actualWins = 0;
-    private float _expectedWins = 0f; // accumulé par machine
+    private float _expectedWins = 0f;
 
-    private float BetAmount => baseBetAmount * (_assignedMachine?.betAmountMultiplier ?? 1f);
-    private float PatienceWinGain => basePatienceWinGain * (_assignedMachine?.patienceWinGainMultiplier ?? 1f);
+    private float BetAmount => data.baseBetAmount * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
+    private float PatienceWinGain => data.basePatienceWinGain * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
+
+    void Start()
+    {
+        _patienceTotal = data.patienceTotal;
+    }
 
     void Update()
     {
-        patienceTotal -= Time.deltaTime;
+        _patienceTotal -= Time.deltaTime;
 
         if (State == NPCState.Playing || State == NPCState.Leaving)
         {
@@ -34,7 +37,7 @@ public class NPC : MonoBehaviour
 
             if (_playTimer <= 0f && State == NPCState.Playing)
             {
-                _playTimer = playInterval;
+                _playTimer = data.playInterval;
                 Play();
             }
 
@@ -42,33 +45,33 @@ public class NPC : MonoBehaviour
                 LeaveMachine();
         }
 
-        if (patienceTotal <= 0f && State != NPCState.Leaving)
+        if (_patienceTotal <= 0f && State != NPCState.Leaving)
             StartLeaving();
     }
 
     public void AssignMachine(Machine machine)
     {
         _assignedMachine = machine;
-        _patienceMachine = machine.sessionDuration;
-        _playTimer = playInterval;
+        _patienceMachine = machine.data.sessionDuration;
+        _playTimer = data.playInterval;
         State = NPCState.Playing;
     }
 
     private void Play()
     {
-        bool win = _assignedMachine.Play();
+        var (win, amount) = _assignedMachine.Play(BetAmount);
         _totalPlays++;
-        _expectedWins += _assignedMachine.payoutRate;
+        _expectedWins += _assignedMachine.data.payoutRate;
 
         if (win)
         {
             _actualWins++;
-            patienceTotal += PatienceWinGain;
-            CurrencyManager.Instance.AddMoney(-BetAmount);
+            _patienceTotal += PatienceWinGain;
+            CurrencyManager.Instance.AddMoney(-amount); // casino paye le NPC
         }
         else
         {
-            CurrencyManager.Instance.AddMoney(BetAmount);
+            CurrencyManager.Instance.AddMoney(amount); // casino encaisse la mise
         }
     }
 
@@ -96,10 +99,8 @@ public class NPC : MonoBehaviour
 
     public float ComputeSatisfaction()
     {
-        if (_totalPlays == 0) 
-        {
-            return 0f; // n'a jamais joué → pire cas
-        }
+        if (_totalPlays == 0)
+            return 0f;
         if (_expectedWins == 0f) return 0f;
         return Mathf.Clamp01(_actualWins / _expectedWins);
     }

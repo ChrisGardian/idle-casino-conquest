@@ -3,26 +3,16 @@ using UnityEngine;
 
 public class Machine : MonoBehaviour
 {
-    [Header("Settings")]
-    public int totalSlots = 1;
+    [Header("Data")]
+    public MachineData data;
 
     [Header("Debug")]
     public float debugInterval = 3f;
     private float _debugTimer;
 
-    public virtual float payoutRate => _payoutRate;
-    public virtual float sessionDuration => _sessionDuration;
-    public virtual float patienceWinGainMultiplier => _patienceWinGainMultiplier;
-    public virtual float betAmountMultiplier => _betAmountMultiplier;
-
-    [SerializeField] private float _payoutRate = 0.35f;
-    [SerializeField] private float _sessionDuration = 15f;
-    [SerializeField] private float _patienceWinGainMultiplier = 1f;
-    [SerializeField] private float _betAmountMultiplier = 1f;
+    public bool HasFreeSlot => _occupants.Count < data.totalSlots;
 
     private readonly List<NPC> _occupants = new();
-
-    public bool HasFreeSlot => _occupants.Count < totalSlots;
 
     public bool TryOccupy(NPC npc)
     {
@@ -38,7 +28,13 @@ public class Machine : MonoBehaviour
         NPCManagementSystem.Instance.OnMachineSlotFreed(this);
     }
 
-    public bool Play() => Random.value < payoutRate;
+    // Retourne si le NPC a gagné et le montant concerné (mise * winMultiplier si victoire, mise si défaite)
+    public (bool win, float amount) Play(float betAmount)
+    {
+        bool win = Random.value < data.payoutRate;
+        float amount = win ? betAmount * data.winMultiplier : betAmount;
+        return (win, amount);
+    }
 
     void Start()
     {
@@ -54,6 +50,7 @@ public class Machine : MonoBehaviour
             PrintOccupants();
         }
     }
+
     private void PrintOccupants()
     {
         if (_occupants.Count == 0)
@@ -62,6 +59,6 @@ public class Machine : MonoBehaviour
             return;
         }
         string names = string.Join(", ", _occupants.ConvertAll(n => n.name));
-        Debug.Log($"Machine {name} Occupants ({_occupants.Count}/{totalSlots}) : {names}");
+        Debug.Log($"Machine {name} Occupants ({_occupants.Count}/{data.totalSlots}) : {names}");
     }
 }

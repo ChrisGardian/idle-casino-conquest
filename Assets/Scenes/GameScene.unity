@@ -933,12 +933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744eac0d29f39564a8d3d18e2509ef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Machine
-  totalSlots: 5
+  data: {fileID: 0}
   debugInterval: 3
-  _payoutRate: 0.35
-  _sessionDuration: 15
-  _patienceWinGainMultiplier: 1
-  _betAmountMultiplier: 1
 --- !u!4 &1373201580
 Transform:
   m_ObjectHideFlags: 0
