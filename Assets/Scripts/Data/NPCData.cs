@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCData", menuName = "Casino/NPCData")]
 public class NPCData : ScriptableObject
 {
+    [Header("Identity")]
+    public bool isVIP;
+
     [Header("Patience")]
     [Tooltip("Durée de patience totale du NPC en secondes")]
     public float patienceTotal = 60f;

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca58ebc2317a91041b91eae65b36e256, type: 3}
-  m_Name: StandardNPCData
+  m_Name: NPCData_VIP
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
-  patienceTotal: 100
-  baseBetAmount: 10
-  basePatienceWinGain: 0.5
-  playInterval: 2
+  isVIP: 1
+  patienceTotal: 300
+  baseBetAmount: 100
+  basePatienceWinGain: 0.8
+  playInterval: 3

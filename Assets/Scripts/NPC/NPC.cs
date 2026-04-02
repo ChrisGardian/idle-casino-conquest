@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum NPCState { Idle, Playing, Leaving }
+public enum NPCState { Idle, Playing, Leaving, Walking }
 
 public class NPC : MonoBehaviour
 {
@@ -8,7 +8,9 @@ public class NPC : MonoBehaviour
     public NPCData data;
 
     public NPCState State { get; private set; } = NPCState.Idle;
+    public bool MovingRight { get; private set; }
 
+    private NPCAnimator _animator;
     private Machine _assignedMachine;
     private float _patienceTotal;
     private float _patienceMachine;
@@ -20,6 +22,11 @@ public class NPC : MonoBehaviour
 
     private float BetAmount => data.baseBetAmount * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
     private float PatienceWinGain => data.basePatienceWinGain * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
+
+    void Awake()
+    {
+        _animator = GetComponentInChildren<NPCAnimator>();
+    }
 
     void Start()
     {
@@ -68,6 +75,7 @@ public class NPC : MonoBehaviour
             _actualWins++;
             _patienceTotal += PatienceWinGain;
             CurrencyManager.Instance.AddMoney(-amount); // casino paye le NPC
+            _animator?.TriggerWin();
         }
         else
         {
@@ -92,6 +100,7 @@ public class NPC : MonoBehaviour
     private void StartLeaving()
     {
         State = NPCState.Leaving;
+        MovingRight = transform.position.x < 0f;
         if (_assignedMachine == null)
             NPCManagementSystem.Instance.OnNPCLeaving(this);
         // Si sur machine → attend que patienceMachine tombe à 0

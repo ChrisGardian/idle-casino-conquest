@@ -6,8 +6,12 @@ public class NPCSpawner : MonoBehaviour
     public Vector2 spawnZoneSize = new Vector2(5f, 3f);
 
     public GameObject npcPrefab;
+    public GameObject vipPrefab;
     public GameObject npcParent;
     public float baseSpawnInterval = 10f;
+
+    [Range(0f, 1f)]
+    public float vipSpawnChance = 0.1f;
 
     private float _spawnTimer;
     private int _npcCount = 0;
@@ -31,8 +35,12 @@ public class NPCSpawner : MonoBehaviour
             Random.Range(-spawnZoneSize.y / 2f, spawnZoneSize.y / 2f),
             0f
             );
-        GameObject obj = Instantiate(npcPrefab, spawnPos, Quaternion.identity, npcParent.transform);
-        obj.name = $"NPC_{_npcCount++}";
+
+        bool spawnVIP = vipPrefab != null && Random.value < vipSpawnChance;
+        GameObject prefab = spawnVIP ? vipPrefab : npcPrefab;
+
+        GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity, npcParent.transform);
+        obj.name = spawnVIP ? $"VIP_{_npcCount++}" : $"NPC_{_npcCount++}";
         NPC npc = obj.GetComponent<NPC>();
         NPCManagementSystem.Instance.RegisterNPC(npc);
     }
