@@ -60,7 +60,14 @@ public class NPCManagementSystem : MonoBehaviour
 
     private void TryAssignNPC(NPC npc)
     {
-        foreach (var machine in _machines)
+        var shuffled = new List<Machine>(_machines);
+        for (int i = shuffled.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+        }
+
+        foreach (var machine in shuffled)
         {
             if (machine.HasFreeSlot)
             {
