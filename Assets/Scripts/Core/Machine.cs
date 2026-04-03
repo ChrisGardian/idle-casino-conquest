@@ -7,6 +7,10 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [Header("Data")]
     public MachineData data;
 
+    [Header("NPC Stand Point")]
+    [Tooltip("Point où le NPC se place pour jouer. Si vide, utilise position machine - 0.6 en Y.")]
+    [SerializeField] private Transform _standPoint;
+
     public bool HasFreeSlot => _occupants.Count < data.totalSlots;
     public IReadOnlyList<NPC> Occupants => _occupants;
     public float RevenuePerMinute => _trackingTime > 1f ? _totalRevenue / _trackingTime * 60f : 0f;
@@ -15,6 +19,9 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float _totalRevenue = 0f;
     private float _trackingTime = 0f;
     private MachineInfoDisplay _infoDisplay;
+
+    public Vector2 GetStandPosition() =>
+        _standPoint != null ? (Vector2)_standPoint.position : (Vector2)transform.position + Vector2.down * 0.6f;
 
     public bool TryOccupy(NPC npc)
     {

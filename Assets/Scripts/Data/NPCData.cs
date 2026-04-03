@@ -20,4 +20,17 @@ public class NPCData : ScriptableObject
 
     [Tooltip("Intervalle entre chaque mise en secondes")]
     public float playInterval = 2f;
+
+    [Header("Movement")]
+    [Tooltip("Vitesse de déplacement (marche vers machine et sortie)")]
+    public float walkSpeed = 2f;
+
+    [Tooltip("Rayon de divagation autour du point de spawn")]
+    public float wanderRadius = 3f;
+
+    [Tooltip("Pause minimale entre deux déplacements aléatoires (secondes)")]
+    public float wanderPauseMin = 1f;
+
+    [Tooltip("Pause maximale entre deux déplacements aléatoires (secondes)")]
+    public float wanderPauseMax = 3f;
 }

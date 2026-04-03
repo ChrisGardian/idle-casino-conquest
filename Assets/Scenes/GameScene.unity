@@ -1070,7 +1070,7 @@ Transform:
   m_GameObject: {fileID: 1570811297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.71417, y: -0.10355, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f26013a339ace14cb2963d0c5b5e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCSpawner
-  spawnZoneSize: {x: 5, y: 3}
+  spawnZoneSize: {x: 0, y: 0}
   npcPrefab: {fileID: 1315836158632257480, guid: dfe0de61af5eb0c4e99acf8a815762bb, type: 3}
   vipPrefab: {fileID: 1315836158632257480, guid: 0d12910d7fc5164409b01b4f71b39a8c, type: 3}
   npcParent: {fileID: 1846564076}
@@ -1164,7 +1164,7 @@ Transform:
   m_GameObject: {fileID: 1723521394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.71417, y: 0.10355, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1197,7 +1197,7 @@ Transform:
   m_GameObject: {fileID: 1846564076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

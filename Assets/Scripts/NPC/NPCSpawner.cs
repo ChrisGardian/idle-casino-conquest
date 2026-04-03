@@ -30,7 +30,7 @@ public class NPCSpawner : MonoBehaviour
 
     private void SpawnNPC()
     {
-        Vector3 spawnPos = transform.position + new Vector3(
+        Vector3 spawnPos = npcParent.transform.position + new Vector3(
             Random.Range(-spawnZoneSize.x / 2f, spawnZoneSize.x / 2f),
             Random.Range(-spawnZoneSize.y / 2f, spawnZoneSize.y / 2f),
             0f
