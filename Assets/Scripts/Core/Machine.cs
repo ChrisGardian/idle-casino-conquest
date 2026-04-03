@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Machine : MonoBehaviour
+public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Data")]
     public MachineData data;
 
-    [Header("Debug")]
-    public float debugInterval = 3f;
-    private float _debugTimer;
-
     public bool HasFreeSlot => _occupants.Count < data.totalSlots;
+    public IReadOnlyList<NPC> Occupants => _occupants;
+    public float RevenuePerMinute => _trackingTime > 1f ? _totalRevenue / _trackingTime * 60f : 0f;
 
     private readonly List<NPC> _occupants = new();
+    private float _totalRevenue = 0f;
+    private float _trackingTime = 0f;
+    private MachineInfoDisplay _infoDisplay;
 
     public bool TryOccupy(NPC npc)
     {
@@ -24,7 +26,6 @@ public class Machine : MonoBehaviour
     public void FreeSlot(NPC npc)
     {
         _occupants.Remove(npc);
-        Debug.Log($"{npc.name} just stopped playing");
         NPCManagementSystem.Instance.OnMachineSlotFreed(this);
     }
 
@@ -33,32 +34,33 @@ public class Machine : MonoBehaviour
     {
         bool win = Random.value < data.payoutRate;
         float amount = win ? betAmount * data.winMultiplier : betAmount;
+
+        float casinoNet = win ? betAmount * (1f - data.winMultiplier) : betAmount;
+        _totalRevenue += casinoNet;
+
         return (win, amount);
     }
 
     void Start()
     {
         NPCManagementSystem.Instance.RegisterMachine(this);
+        _infoDisplay = GetComponentInChildren<MachineInfoDisplay>(true);
     }
 
     void Update()
     {
-        _debugTimer -= Time.deltaTime;
-        if (_debugTimer <= 0f)
-        {
-            _debugTimer = debugInterval;
-            PrintOccupants();
-        }
+        _trackingTime += Time.deltaTime;
     }
 
-    private void PrintOccupants()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_occupants.Count == 0)
-        {
-            Debug.Log($"Machine {name} empty");
-            return;
-        }
-        string names = string.Join(", ", _occupants.ConvertAll(n => n.name));
-        Debug.Log($"Machine {name} Occupants ({_occupants.Count}/{data.totalSlots}) : {names}");
+        if (_infoDisplay != null)
+            _infoDisplay.Show();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (_infoDisplay != null)
+            _infoDisplay.Hide();
     }
 }

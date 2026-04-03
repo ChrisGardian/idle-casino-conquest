@@ -9,6 +9,7 @@ public class NPC : MonoBehaviour
 
     public NPCState State { get; private set; } = NPCState.Idle;
     public bool MovingRight { get; private set; }
+    public float PatienceMachineRemaining => _patienceMachine;
 
     private NPCAnimator _animator;
     private Machine _assignedMachine;
