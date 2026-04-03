@@ -45,6 +45,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         NPCManagementSystem.Instance.RegisterMachine(this);
         _infoDisplay = GetComponentInChildren<MachineInfoDisplay>(true);
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
     }
 
     void Update()

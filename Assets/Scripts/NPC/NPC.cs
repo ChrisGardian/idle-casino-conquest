@@ -36,6 +36,7 @@ public class NPC : MonoBehaviour
 
     void Update()
     {
+        GetComponentInChildren<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
         _patienceTotal -= Time.deltaTime;
 
         if (State == NPCState.Playing || State == NPCState.Leaving)
