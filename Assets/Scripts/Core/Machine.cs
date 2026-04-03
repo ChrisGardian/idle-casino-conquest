@@ -20,8 +20,20 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float _trackingTime = 0f;
     private MachineInfoDisplay _infoDisplay;
 
-    public Vector2 GetStandPosition() =>
-        _standPoint != null ? (Vector2)_standPoint.position : (Vector2)transform.position + Vector2.down * 0.6f;
+    public Vector2 GetStandPosition() 
+    {
+        Vector2 pos;
+        if (_standPoint != null)
+        {
+            pos = _standPoint.position;            
+        } 
+        else
+        {
+            pos = (Vector2)transform.position + Vector2.down * 0.6f;
+        }
+        pos.x = pos.x + 1 * Random.Range(-1.0f, 1.0f);
+        return pos;
+    }
 
     public bool TryOccupy(NPC npc)
     {
