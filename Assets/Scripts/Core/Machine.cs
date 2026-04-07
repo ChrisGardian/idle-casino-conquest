@@ -15,13 +15,24 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public IReadOnlyList<NPC> Occupants => _occupants;
     public float RevenuePerMinute => _trackingTime > 1f ? _totalRevenue / _trackingTime * 60f : 0f;
     public MachineLine Line { get; private set; }
+    public bool IsLocked { get; private set; } = false;
 
     private readonly List<NPC> _occupants = new();
     private float _totalRevenue = 0f;
     private float _trackingTime = 0f;
     private MachineInfoDisplay _infoDisplay;
+    private SpriteRenderer _spriteRenderer;
+
+    private static readonly Color LockedColor = new Color(0.4f, 0.4f, 0.4f, 1f);
 
     public void SetLine(MachineLine line) => Line = line;
+
+    public void SetLocked(bool locked)
+    {
+        IsLocked = locked;
+        if (_spriteRenderer != null)
+            _spriteRenderer.color = locked ? LockedColor : Color.white;
+    }
 
     public Vector2 GetStandPosition() 
     {
@@ -54,7 +65,8 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Retourne si le NPC a gagné et le montant concerné (mise * winMultiplier si victoire, mise si défaite)
     public (bool win, float amount) Play(float betAmount)
     {
-        bool win = Random.value < data.payoutRate;
+        float payoutRate = (Line != null && Line.UsePayoutOverride) ? Line.PayoutOverride : data.payoutRate;
+        bool win = Random.value < payoutRate;
         float amount = win ? betAmount * data.winMultiplier : betAmount;
 
         float casinoNet = win ? betAmount * (1f - data.winMultiplier) : betAmount;
@@ -63,11 +75,18 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return (win, amount);
     }
 
+    void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
-        NPCManagementSystem.Instance.RegisterMachine(this);
+        _spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
         _infoDisplay = GetComponentInChildren<MachineInfoDisplay>(true);
-        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
+
+        if (!IsLocked)
+            NPCManagementSystem.Instance.RegisterMachine(this);
     }
 
     void Update()

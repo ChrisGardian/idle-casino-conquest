@@ -28,6 +28,22 @@ public class MachineLine : MonoBehaviour
 
     private readonly List<Machine> _machines = new();
 
+    void Awake()
+    {
+        MachineLineManager.Instance.RegisterLine(this);
+    }
+
+    void Start()
+    {
+        if (!_isUnlocked)
+            SpawnMachine(locked: true);
+    }
+
+    void OnDestroy()
+    {
+        MachineLineManager.Instance?.UnregisterLine(this);
+    }
+
     // ── Unlock ────────────────────────────────────────────────────────────────
 
     public bool CanUnlock() => !_isUnlocked && CurrencyManager.Instance.money >= data.unlockCost;
@@ -36,7 +52,11 @@ public class MachineLine : MonoBehaviour
     {
         if (!CurrencyManager.Instance.TrySpendMoney(data.unlockCost)) return false;
         _isUnlocked = true;
-        SpawnMachine(); // 1ère machine placée automatiquement
+
+        // La machine preview devient active
+        if (_machines.Count > 0)
+            _machines[0].SetLocked(false);
+
         return true;
     }
 
@@ -47,7 +67,7 @@ public class MachineLine : MonoBehaviour
     public void AddMachine()
     {
         if (!CanAddMachine()) return;
-        SpawnMachine();
+        SpawnMachine(locked: false);
     }
 
     // ── Upgrade ───────────────────────────────────────────────────────────────
@@ -85,12 +105,13 @@ public class MachineLine : MonoBehaviour
 
     // ── Internal ──────────────────────────────────────────────────────────────
 
-    private void SpawnMachine()
+    private void SpawnMachine(bool locked)
     {
         Vector3 spawnPos = GetNextMachinePosition();
         GameObject go = Instantiate(data.machinePrefab, spawnPos, Quaternion.identity);
         Machine machine = go.GetComponent<Machine>();
         machine.SetLine(this);
+        machine.SetLocked(locked);
         _machines.Add(machine);
     }
 
