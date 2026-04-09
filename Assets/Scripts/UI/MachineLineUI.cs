@@ -18,6 +18,9 @@ public class MachineLineUI : MonoBehaviour
     [SerializeField] private Button _upgradeButton;
     [SerializeField] private Button _editButton;
 
+    [Header("Edit Popup")]
+    [SerializeField] private MachineLineEditPopup _editPopup;
+
     void Awake()
     {
         _unlockButton.onClick.AddListener(OnUnlockClicked);
@@ -74,6 +77,6 @@ public class MachineLineUI : MonoBehaviour
 
     private void OnEditClicked()
     {
-        // Step 5 : popup de configuration
+        _editPopup.Open(_line);
     }
 }
