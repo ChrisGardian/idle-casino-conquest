@@ -22,8 +22,9 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float _trackingTime = 0f;
     private MachineInfoDisplay _infoDisplay;
     private SpriteRenderer _spriteRenderer;
+    private bool _hasStarted = false;
 
-    private static readonly Color LockedColor = new Color(0.4f, 0.4f, 0.4f, 1f);
+    private static readonly Color LockedColor = new(0.4f, 0.4f, 0.4f, 1f);
 
     public void SetLine(MachineLine line) => Line = line;
 
@@ -32,6 +33,9 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         IsLocked = locked;
         if (_spriteRenderer != null)
             _spriteRenderer.color = locked ? LockedColor : Color.white;
+
+        if (!locked && _hasStarted)
+            NPCManagementSystem.Instance.RegisterMachine(this);
     }
 
     public Vector2 GetStandPosition() 
@@ -82,6 +86,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Start()
     {
+        _hasStarted = true;
         _spriteRenderer.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
         _infoDisplay = GetComponentInChildren<MachineInfoDisplay>(true);
 
