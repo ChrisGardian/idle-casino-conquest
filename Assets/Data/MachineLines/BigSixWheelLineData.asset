@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
   lineTypeName: Big Six Wheels
   machinePrefab: {fileID: 5363532555029634620, guid: 0df5f7a17336a3046baf2efd68a64947, type: 3}
-  unlockCost: 0
-  upgradeCosts: []
-  maxMachinesPerLevel: 
-  revenueMultiplierPerLevel: []
+  unlockCost: 1
+  upgradeCosts:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  maxMachinesPerLevel: 32000000320000003200000032000000320000003200000032000000320000003200000032000000
+  revenueMultiplierPerLevel:
+  - 1
+  - 1.2
+  - 1.3
+  - 1.4
+  - 1.5
+  - 1.6
+  - 1.7
+  - 1.8
+  - 1.9
+  - 2

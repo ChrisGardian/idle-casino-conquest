@@ -10,6 +10,7 @@ public class MachineLine : MonoBehaviour
     [Tooltip("Point de départ du placement des machines (coin gauche de la ligne)")]
     [SerializeField] private Transform _origin;
     [SerializeField] private float _machineSpacing = 2.5f;
+    [SerializeField] private Transform _machinesContainer;
 
     [Header("State")]
     [SerializeField] private bool _isUnlocked = false;
@@ -108,7 +109,7 @@ public class MachineLine : MonoBehaviour
     private void SpawnMachine(bool locked)
     {
         Vector3 spawnPos = GetNextMachinePosition();
-        GameObject go = Instantiate(data.machinePrefab, spawnPos, Quaternion.identity);
+        GameObject go = Instantiate(data.machinePrefab, spawnPos, Quaternion.identity, _machinesContainer);
         Machine machine = go.GetComponent<Machine>();
         machine.SetLine(this);
         machine.SetLocked(locked);
