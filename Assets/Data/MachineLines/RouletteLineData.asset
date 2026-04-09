@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624194daea873424f86b7d64d82383b0, type: 3}
   m_Name: RouletteLineData
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
-  lineTypeName: 
-  machinePrefab: {fileID: 0}
+  lineTypeName: Roulette Tables
+  machinePrefab: {fileID: 741944845695642303, guid: 8cec6e7b2f8ec2c42ae5998998b47202, type: 3}
   unlockCost: 0
   upgradeCosts: []
   maxMachinesPerLevel: 

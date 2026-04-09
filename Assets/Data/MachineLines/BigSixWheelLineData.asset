@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624194daea873424f86b7d64d82383b0, type: 3}
   m_Name: BigSixWheelLineData
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
-  lineTypeName: 
-  machinePrefab: {fileID: 0}
+  lineTypeName: Big Six Wheels
+  machinePrefab: {fileID: 5363532555029634620, guid: 0df5f7a17336a3046baf2efd68a64947, type: 3}
   unlockCost: 0
   upgradeCosts: []
   maxMachinesPerLevel: 

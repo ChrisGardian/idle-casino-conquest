@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624194daea873424f86b7d64d82383b0, type: 3}
   m_Name: BlackjackLineData
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
-  lineTypeName: 
-  machinePrefab: {fileID: 0}
+  lineTypeName: Blackjack Tables
+  machinePrefab: {fileID: 6793075301555533898, guid: c3ac3e6829dbb304abd50514e2d1e203, type: 3}
   unlockCost: 0
   upgradeCosts: []
   maxMachinesPerLevel: 

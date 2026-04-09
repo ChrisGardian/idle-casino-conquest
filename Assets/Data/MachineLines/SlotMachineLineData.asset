@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624194daea873424f86b7d64d82383b0, type: 3}
   m_Name: SlotMachineLineData
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
-  lineTypeName: 
-  machinePrefab: {fileID: 0}
-  unlockCost: 0
+  lineTypeName: Slot Machines
+  machinePrefab: {fileID: 1954835335905684223, guid: 88eb819ebfd72254194afe8d16ba9a66, type: 3}
+  unlockCost: 10
   upgradeCosts: []
   maxMachinesPerLevel: 
   revenueMultiplierPerLevel: []

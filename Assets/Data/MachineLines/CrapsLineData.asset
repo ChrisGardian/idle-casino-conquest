@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624194daea873424f86b7d64d82383b0, type: 3}
   m_Name: CrapsLineData
   m_EditorClassIdentifier: Assembly-CSharp::MachineLineData
-  lineTypeName: 
-  machinePrefab: {fileID: 0}
+  lineTypeName: Craps Tables
+  machinePrefab: {fileID: 777331057435003927, guid: dcfc31cf2e6b2b34fb3fd506b6ccf86e, type: 3}
   unlockCost: 0
   upgradeCosts: []
   maxMachinesPerLevel: 
