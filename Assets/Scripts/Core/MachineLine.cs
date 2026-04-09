@@ -119,6 +119,6 @@ public class MachineLine : MonoBehaviour
     private Vector3 GetNextMachinePosition()
     {
         Vector3 origin = _origin != null ? _origin.position : transform.position;
-        return origin + Vector3.right * (_machines.Count * _machineSpacing);
+        return origin + Vector3.up * (_machines.Count * _machineSpacing);
     }
 }
