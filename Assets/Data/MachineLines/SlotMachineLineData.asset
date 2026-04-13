@@ -15,6 +15,26 @@ MonoBehaviour:
   lineTypeName: Slot Machines
   machinePrefab: {fileID: 1954835335905684223, guid: 88eb819ebfd72254194afe8d16ba9a66, type: 3}
   unlockCost: 10
-  upgradeCosts: []
-  maxMachinesPerLevel: 
-  revenueMultiplierPerLevel: []
+  upgradeCosts:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  maxMachinesPerLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  revenueMultiplierPerLevel:
+  - 1
+  - 1.1
+  - 1.2
+  - 1.3
+  - 1.4
+  - 1.5
+  - 1.6
+  - 1.7
+  - 1.8
+  - 1.9
