@@ -1,0 +1,107 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UpgradeTreeManager : MonoBehaviour
+{
+    public static UpgradeTreeManager Instance { get; private set; }
+
+    [SerializeField] private UpgradeTreeData _data;
+
+    private readonly Dictionary<string, int> _nodeLevels = new();
+
+    public int AvailableActionsCount { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        RecalculateAvailableCount();
+    }
+
+    // ── Queries ───────────────────────────────────────────────────────────────
+
+    public int GetLevel(string nodeId) =>
+        _nodeLevels.TryGetValue(nodeId, out int level) ? level : 0;
+
+    public bool IsUnlocked(string nodeId) => GetLevel(nodeId) > 0;
+
+    public float GetCost(UpgradeNodeDefinition node)
+    {
+        int level = GetLevel(node.id);
+        float cost = node.baseCost * Mathf.Pow(node.growthFactor, level);
+        return Mathf.Round(cost * _data.globalCostMultiplier);
+    }
+
+    public bool IsAccessible(string nodeId)
+    {
+        UpgradeNodeDefinition node = _data.GetNode(nodeId);
+        if (node == null) return false;
+        if (string.IsNullOrEmpty(node.prerequisiteId)) return true;
+        return IsUnlocked(node.prerequisiteId);
+    }
+
+    public bool CanAct(string nodeId)
+    {
+        if (!IsAccessible(nodeId)) return false;
+        UpgradeNodeDefinition node = _data.GetNode(nodeId);
+        if (node == null) return false;
+        if (GetLevel(nodeId) >= node.maxLevel) return false;
+        return CurrencyManager.Instance.money >= GetCost(node);
+    }
+
+    // ── Action ────────────────────────────────────────────────────────────────
+
+    public bool TryAct(string nodeId)
+    {
+        if (!CanAct(nodeId)) return false;
+        UpgradeNodeDefinition node = _data.GetNode(nodeId);
+        if (!CurrencyManager.Instance.TrySpendMoney(GetCost(node))) return false;
+
+        _nodeLevels[nodeId] = GetLevel(nodeId) + 1;
+        int newLevel = _nodeLevels[nodeId];
+
+        foreach (UpgradeEffect effect in node.effects)
+            ApplyEffect(effect, newLevel);
+
+        RecalculateAvailableCount();
+        return true;
+    }
+
+    // ── Effects ───────────────────────────────────────────────────────────────
+
+    private void ApplyEffect(UpgradeEffect effect, int newLevel)
+    {
+        // À compléter au fur et à mesure que les systèmes sont prêts
+        switch (effect.type)
+        {
+            case EffectType.GlobalRevenueMultiplier:
+                // TODO: CurrencyManager.Instance.ApplyRevenueMultiplier(effect.valuePerLevel)
+                break;
+            case EffectType.UnlockNPCSpawning:
+                // TODO: NPCSpawner.Instance.Enable()
+                break;
+            case EffectType.UnlockMachineLine:
+                // TODO: MachineLineManager.Instance.UnlockLine(effect.targetLine)
+                break;
+            default:
+                break;
+        }
+    }
+
+    // ── Badge ─────────────────────────────────────────────────────────────────
+
+    private void RecalculateAvailableCount()
+    {
+        int count = 0;
+        foreach (UpgradeNodeDefinition node in _data.nodes)
+        {
+            if (CanAct(node.id)) count++;
+        }
+        AvailableActionsCount = count;
+    }
+}
