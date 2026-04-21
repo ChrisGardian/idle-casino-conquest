@@ -14,4 +14,452 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTreeData
   globalCostMultiplier: 1
   rootNodeId: open_casino
-  nodes: []
+  nodes:
+  - id: open_casino
+    displayName: Open Casino
+    description: Open your doors to the public.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 0
+    growthFactor: 1
+    prerequisiteId: 
+    treePosition: {x: 0, y: 0}
+    effects:
+    - type: 0
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: global_revenue
+    displayName: Global Revenue Multiplier
+    description: Increases all casino earnings.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1000
+    growthFactor: 1.8
+    prerequisiteId: open_casino
+    treePosition: {x: 0, y: -200}
+    effects:
+    - type: 26
+      valuePerLevel: 0.1
+      targetLine: {fileID: 0}
+  - id: casino_reputation
+    displayName: Casino Reputation
+    description: Passively boosts popularity, increasing NPC spawn rate.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 800
+    growthFactor: 1.7
+    prerequisiteId: open_casino
+    treePosition: {x: 0, y: -400}
+    effects:
+    - type: 27
+      valuePerLevel: 0.05
+      targetLine: {fileID: 0}
+  - id: analytics_board
+    displayName: Analytics Board
+    description: Unlocks the detailed stats screen.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 2000
+    growthFactor: 1
+    prerequisiteId: open_casino
+    treePosition: {x: 0, y: -600}
+    effects:
+    - type: 9
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: casino_expansion
+    displayName: Casino Expansion
+    description: Unlocks the second casino.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 50000
+    growthFactor: 1
+    prerequisiteId: global_revenue
+    treePosition: {x: 0, y: -800}
+    effects:
+    - type: 10
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_slots
+    displayName: Unlock Slots
+    description: Unlock the slot machine line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 500
+    growthFactor: 1
+    prerequisiteId: open_casino
+    treePosition: {x: 600, y: 0}
+    effects:
+    - type: 1
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_roulette
+    displayName: Unlock Roulette
+    description: Unlock the roulette line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 2000
+    growthFactor: 1
+    prerequisiteId: unlock_slots
+    treePosition: {x: 600, y: -200}
+    effects:
+    - type: 1
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_blackjack
+    displayName: Unlock Blackjack
+    description: Unlock the blackjack line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 8000
+    growthFactor: 1
+    prerequisiteId: unlock_roulette
+    treePosition: {x: 600, y: -400}
+    effects:
+    - type: 1
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_craps
+    displayName: Unlock Craps
+    description: Unlock the craps line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 25000
+    growthFactor: 1
+    prerequisiteId: unlock_blackjack
+    treePosition: {x: 600, y: -600}
+    effects:
+    - type: 1
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_bigsixwheel
+    displayName: Unlock Big Six Wheel
+    description: Unlock the big six wheel line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 80000
+    growthFactor: 1
+    prerequisiteId: unlock_craps
+    treePosition: {x: 600, y: -800}
+    effects:
+    - type: 1
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: ml_add_machines
+    displayName: Add Machines
+    description: Increases the max number of machines per line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1500
+    growthFactor: 2
+    prerequisiteId: unlock_slots
+    treePosition: {x: 600, y: -1000}
+    effects:
+    - type: 11
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: ml_slots_per_machine
+    displayName: Slots per Machine
+    description: Adds an extra NPC slot per machine.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 3
+    baseCost: 3000
+    growthFactor: 2.2
+    prerequisiteId: ml_add_machines
+    treePosition: {x: 600, y: -1200}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: ml_payout_rate
+    displayName: Payout Rate
+    description: Increases the base payout rate of machines.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 2000
+    growthFactor: 1.9
+    prerequisiteId: unlock_slots
+    treePosition: {x: 600, y: -1400}
+    effects:
+    - type: 13
+      valuePerLevel: 0.02
+      targetLine: {fileID: 0}
+  - id: ml_session_duration
+    displayName: Session Duration
+    description: Extends machine session duration.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1200
+    growthFactor: 1.7
+    prerequisiteId: unlock_slots
+    treePosition: {x: 600, y: -1600}
+    effects:
+    - type: 14
+      valuePerLevel: 2
+      targetLine: {fileID: 0}
+  - id: unlock_ml_info_panel
+    displayName: Machine Line Info Panel
+    description: Unlocks the info panel for each machine line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 1000
+    growthFactor: 1
+    prerequisiteId: unlock_slots
+    treePosition: {x: 600, y: -1800}
+    effects:
+    - type: 5
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_m_info_panel
+    displayName: Machine Info Panel
+    description: Unlocks the info panel for individual machines.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 1500
+    growthFactor: 1
+    prerequisiteId: unlock_ml_info_panel
+    treePosition: {x: 600, y: -2000}
+    effects:
+    - type: 6
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: unlock_payout_edit
+    displayName: Edit Payout Rate
+    description: Unlocks manual payout rate editing per line.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 5000
+    growthFactor: 1
+    prerequisiteId: unlock_ml_info_panel
+    treePosition: {x: 600, y: -2200}
+    effects:
+    - type: 7
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: npc_walk_speed
+    displayName: NPC Walk Speed
+    description: NPCs walk faster to machines.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 400
+    growthFactor: 1.6
+    prerequisiteId: open_casino
+    treePosition: {x: 1200, y: 0}
+    effects:
+    - type: 16
+      valuePerLevel: 0.1
+      targetLine: {fileID: 0}
+  - id: npc_patience
+    displayName: NPC Patience
+    description: NPCs wait longer before leaving.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 500
+    growthFactor: 1.7
+    prerequisiteId: open_casino
+    treePosition: {x: 1200, y: -200}
+    effects:
+    - type: 17
+      valuePerLevel: 2
+      targetLine: {fileID: 0}
+  - id: npc_arrival_interval
+    displayName: NPC Arrival Interval
+    description: Reduces time between NPC spawns.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 600
+    growthFactor: 1.8
+    prerequisiteId: open_casino
+    treePosition: {x: 1200, y: -400}
+    effects:
+    - type: 15
+      valuePerLevel: -0.5
+      targetLine: {fileID: 0}
+  - id: npc_colors
+    displayName: NPC Colors
+    description: Unlocks color variants for NPCs.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 800
+    growthFactor: 1
+    prerequisiteId: open_casino
+    treePosition: {x: 1200, y: -600}
+    effects:
+    - type: 4
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: npc_satisfaction
+    displayName: NPC Satisfaction Threshold
+    description: Satisfied NPCs stay longer.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 700
+    growthFactor: 1.7
+    prerequisiteId: npc_patience
+    treePosition: {x: 1200, y: -800}
+    effects:
+    - type: 19
+      valuePerLevel: 0.05
+      targetLine: {fileID: 0}
+  - id: npc_departure_gain
+    displayName: Departure Satisfaction Gain
+    description: Satisfied NPCs give more popularity on departure.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 900
+    growthFactor: 1.8
+    prerequisiteId: npc_satisfaction
+    treePosition: {x: 1200, y: -1000}
+    effects:
+    - type: 20
+      valuePerLevel: 0.1
+      targetLine: {fileID: 0}
+  - id: npc_base_gains
+    displayName: NPC Base Gains Multiplier
+    description: Multiplies earnings from regular NPCs.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1000
+    growthFactor: 1.9
+    prerequisiteId: open_casino
+    treePosition: {x: 1200, y: -1200}
+    effects:
+    - type: 18
+      valuePerLevel: 0.1
+      targetLine: {fileID: 0}
+  - id: unlock_vips
+    displayName: Unlock VIPs
+    description: Enables VIP NPCs to spawn.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 5000
+    growthFactor: 1
+    prerequisiteId: npc_arrival_interval
+    treePosition: {x: 1800, y: 0}
+    effects:
+    - type: 2
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: vip_spawn_chance
+    displayName: VIP Spawn Chance
+    description: Increases the chance of a VIP spawning.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 2000
+    growthFactor: 1.9
+    prerequisiteId: unlock_vips
+    treePosition: {x: 1800, y: -200}
+    effects:
+    - type: 21
+      valuePerLevel: 0.02
+      targetLine: {fileID: 0}
+  - id: vip_walk_speed
+    displayName: VIP Walk Speed
+    description: VIPs walk faster.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1500
+    growthFactor: 1.6
+    prerequisiteId: unlock_vips
+    treePosition: {x: 1800, y: -400}
+    effects:
+    - type: 22
+      valuePerLevel: 0.1
+      targetLine: {fileID: 0}
+  - id: vip_patience
+    displayName: VIP Patience
+    description: VIPs stay longer at machines.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1800
+    growthFactor: 1.7
+    prerequisiteId: unlock_vips
+    treePosition: {x: 1800, y: -600}
+    effects:
+    - type: 23
+      valuePerLevel: 3
+      targetLine: {fileID: 0}
+  - id: vip_base_gains
+    displayName: VIP Base Gains Multiplier
+    description: Multiplies earnings from VIPs.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 3000
+    growthFactor: 2
+    prerequisiteId: unlock_vips
+    treePosition: {x: 1800, y: -800}
+    effects:
+    - type: 24
+      valuePerLevel: 0.15
+      targetLine: {fileID: 0}
+  - id: unlock_vip_referral
+    displayName: VIP Referral
+    description: A satisfied VIP temporarily boosts the next VIP spawn chance.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 8000
+    growthFactor: 1
+    prerequisiteId: vip_spawn_chance
+    treePosition: {x: 1800, y: -1000}
+    effects:
+    - type: 8
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: vip_referral_chance
+    displayName: VIP Referral Chance
+    description: Increases the strength of the VIP referral bonus.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 4000
+    growthFactor: 1.9
+    prerequisiteId: unlock_vip_referral
+    treePosition: {x: 1800, y: -1200}
+    effects:
+    - type: 25
+      valuePerLevel: 0.05
+      targetLine: {fileID: 0}
+  - id: unlock_golden_vips
+    displayName: Unlock Golden VIPs
+    description: Enables Golden VIP NPCs to spawn.
+    icon: {fileID: 0}
+    nodeType: 0
+    maxLevel: 1
+    baseCost: 30000
+    growthFactor: 1
+    prerequisiteId: vip_base_gains
+    treePosition: {x: 1800, y: -1400}
+    effects:
+    - type: 3
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
