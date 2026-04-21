@@ -6,18 +6,25 @@ public class NPCManagementSystem : MonoBehaviour
     [Header("Variables")]
     public float popularityModifier = 1f;
 
+    [Header("Wander Bounds")]
+    [SerializeField] private BoxCollider2D _wanderBoundsCollider;
+
     public static NPCManagementSystem Instance { get; private set; }
+    public static Bounds WanderBounds { get; private set; }
 
     private readonly List<NPC> _allNPCs = new();
     private readonly List<NPC> _idleNPCs = new();
     private readonly List<Machine> _machines = new();
 
-    public float numberOfNPCs => _allNPCs.Count; 
+    public float numberOfNPCs => _allNPCs.Count;
 
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+
+        if (_wanderBoundsCollider != null)
+            WanderBounds = _wanderBoundsCollider.bounds;
     }
 
     public void RegisterMachine(Machine machine) => _machines.Add(machine);

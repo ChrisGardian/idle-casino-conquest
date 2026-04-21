@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
     public float PatienceMachineRemaining => _patienceMachine;
 
     private NPCAnimator _animator;
+    private SpriteRenderer _sr;
     private Machine _assignedMachine;
     private float _patienceTotal;
     private float _patienceMachine;
@@ -33,6 +34,7 @@ public class NPC : MonoBehaviour
     void Awake()
     {
         _animator = GetComponentInChildren<NPCAnimator>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Start()
@@ -45,7 +47,7 @@ public class NPC : MonoBehaviour
 
     void Update()
     {
-        GetComponentInChildren<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
+        _sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
 
         // La patience totale est suspendue pendant le trajet vers une machine
         if (!_headingToMachine)
@@ -88,6 +90,15 @@ public class NPC : MonoBehaviour
     {
         Vector2 offset = Random.insideUnitCircle * data.wanderRadius;
         _walkTarget = _spawnPosition + offset;
+
+        Bounds b = NPCManagementSystem.WanderBounds;
+        if (b.size != Vector3.zero)
+        {
+            Vector2 half = _sr != null ? (Vector2)_sr.bounds.extents : Vector2.zero;
+            _walkTarget.x = Mathf.Clamp(_walkTarget.x, b.min.x + half.x, b.max.x - half.x);
+            _walkTarget.y = Mathf.Clamp(_walkTarget.y, b.min.y + half.y, b.max.y - half.y);
+        }
+
         State = NPCState.Walking;
     }
 
