@@ -28,6 +28,9 @@ public class UpgradeTreeManager : MonoBehaviour
     public int GetLevel(string nodeId) =>
         _nodeLevels.TryGetValue(nodeId, out int level) ? level : 0;
 
+    public UpgradeNodeDefinition GetNodeDefinition(string nodeId) =>
+        _data.GetNode(nodeId);
+
     public bool IsUnlocked(string nodeId) => GetLevel(nodeId) > 0;
 
     public float GetCost(UpgradeNodeDefinition node)
