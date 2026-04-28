@@ -2996,6 +2996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   _upgradeTreeButton: {fileID: 1875653435}
+  _panZoom: {fileID: 519420034}
   _buttonActiveColor: {r: 0.4, g: 0.85, b: 1, a: 1}
 --- !u!1 &1407323311
 GameObject:

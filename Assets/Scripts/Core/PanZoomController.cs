@@ -39,6 +39,11 @@ public class PanZoomController : MonoBehaviour
             _useBounds = false;
     }
 
+    void OnDisable()
+    {
+        _isDragging = false;
+    }
+
     void Update()
     {
         HandleDragPan();
