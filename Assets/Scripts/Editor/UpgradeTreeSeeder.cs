@@ -9,6 +9,13 @@ public static class UpgradeTreeSeeder
 
     private enum Col { Casino = 0, MachineLine = 1, NPC = 2, VIP = 3 }
 
+    private struct EffectSeed
+    {
+        public EffectType Type;
+        public float Value;
+        public string MachineLine; // nom de l'asset sans extension, ex: "SlotMachineLineData"
+    }
+
     private struct NodeSeed
     {
         public string Id;
@@ -20,11 +27,11 @@ public static class UpgradeTreeSeeder
         public float GrowthFactor;
         public string PrerequisiteId;
         public Col Column;
-        public UpgradeEffect[] Effects;
+        public EffectSeed[] Effects;
 
         public NodeSeed(string id, string displayName, string description,
             NodeType nodeType, int maxLevel, float baseCost, float growthFactor,
-            string prerequisiteId, Col column, UpgradeEffect[] effects = null)
+            string prerequisiteId, Col column, EffectSeed[] effects = null)
         {
             Id = id;
             DisplayName = displayName;
@@ -35,7 +42,7 @@ public static class UpgradeTreeSeeder
             GrowthFactor = growthFactor;
             PrerequisiteId = prerequisiteId;
             Column = column;
-            Effects = effects ?? System.Array.Empty<UpgradeEffect>();
+            Effects = effects ?? System.Array.Empty<EffectSeed>();
         }
     }
 
@@ -65,23 +72,23 @@ public static class UpgradeTreeSeeder
         // ── Machine Lines ─────────────────────────────────────────────────────
         new("unlock_slots",         "Unlock Slots",                 "Unlock the slot machine line.",
             NodeType.Unlock,  1, 500,   1.0f, "open_casino",         Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f) }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "SlotMachineLineData") }),
 
         new("unlock_roulette",      "Unlock Roulette",              "Unlock the roulette line.",
             NodeType.Unlock,  1, 2000,  1.0f, "unlock_slots",        Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f) }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "RouletteLineData") }),
 
         new("unlock_blackjack",     "Unlock Blackjack",             "Unlock the blackjack line.",
             NodeType.Unlock,  1, 8000,  1.0f, "unlock_roulette",     Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f) }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "BlackjackLineData") }),
 
         new("unlock_craps",         "Unlock Craps",                 "Unlock the craps line.",
             NodeType.Unlock,  1, 25000, 1.0f, "unlock_blackjack",    Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f) }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "CrapsLineData") }),
 
         new("unlock_bigsixwheel",   "Unlock Big Six Wheel",         "Unlock the big six wheel line.",
             NodeType.Unlock,  1, 80000, 1.0f, "unlock_craps",        Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f) }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "BigSixWheelLineData") }),
 
         new("ml_add_machines",      "Add Machines",                 "Increases the max number of machines per line.",
             NodeType.Upgrade, 5, 1500,  2.0f, "unlock_slots",        Col.MachineLine,
@@ -196,6 +203,20 @@ public static class UpgradeTreeSeeder
         {
             if (!rowCounters.ContainsKey(seed.Column)) rowCounters[seed.Column] = 0;
 
+            List<UpgradeEffect> effects = new();
+            foreach (EffectSeed es in seed.Effects)
+            {
+                MachineLineData lineData = null;
+                if (!string.IsNullOrEmpty(es.MachineLine))
+                {
+                    string linePath = $"Assets/Data/MachineLines/{es.MachineLine}.asset";
+                    lineData = AssetDatabase.LoadAssetAtPath<MachineLineData>(linePath);
+                    if (lineData == null)
+                        Debug.LogWarning($"UpgradeTreeSeeder: MachineLineData introuvable à {linePath}");
+                }
+                effects.Add(new UpgradeEffect { type = es.Type, valuePerLevel = es.Value, targetLine = lineData });
+            }
+
             UpgradeNodeDefinition node = new()
             {
                 id             = seed.Id,
@@ -207,7 +228,7 @@ public static class UpgradeTreeSeeder
                 growthFactor   = seed.GrowthFactor,
                 prerequisiteId = seed.PrerequisiteId,
                 treePosition   = new Vector2((int)seed.Column * ColSpacing, -rowCounters[seed.Column] * RowSpacing),
-                effects        = new List<UpgradeEffect>(seed.Effects),
+                effects        = effects,
             };
 
             treeData.nodes.Add(node);
@@ -220,6 +241,6 @@ public static class UpgradeTreeSeeder
         Debug.Log($"UpgradeTreeSeeder: generated {treeData.nodes.Count} nodes into {path}");
     }
 
-    private static UpgradeEffect E(EffectType type, float value, MachineLineData targetLine = null) =>
-        new() { type = type, valuePerLevel = value, targetLine = targetLine };
+    private static EffectSeed E(EffectType type, float value, string machineLine = null) =>
+        new() { Type = type, Value = value, MachineLine = machineLine };
 }
