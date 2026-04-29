@@ -98,7 +98,7 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.GlobalRevenueMultiplier:
-                // TODO: CurrencyManager
+                CurrencyManager.Instance?.AddRevenueMultiplier(effect.valuePerLevel);
                 break;
 
             case EffectType.UnlockNPCSpawning:

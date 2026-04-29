@@ -8,6 +8,11 @@ public class CurrencyManager : MonoBehaviour
     public float money = 1000f;
     public float popularity = 2f;
 
+    [Header("Multipliers")]
+    public float revenueMultiplier = 1f;
+
+    public void AddRevenueMultiplier(float bonus) => revenueMultiplier += bonus;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
