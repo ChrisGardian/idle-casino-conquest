@@ -13,6 +13,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public bool HasFreeSlot => _occupants.Count < data.totalSlots;
     public IReadOnlyList<NPC> Occupants => _occupants;
+    public float TotalRevenue => _totalRevenue;
     public float RevenuePerMinute => _trackingTime > 1f ? _totalRevenue / _trackingTime * 60f : 0f;
     public MachineLine Line { get; private set; }
     public bool IsLocked { get; private set; } = false;

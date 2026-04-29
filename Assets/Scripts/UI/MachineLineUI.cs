@@ -14,19 +14,18 @@ public class MachineLineUI : MonoBehaviour
 
     [Header("Management Panel")]
     [SerializeField] private GameObject _managementPanel;
-    [SerializeField] private Button _addMachineButton;
-    [SerializeField] private Button _upgradeButton;
+    [SerializeField] private Button _infoButton;
     [SerializeField] private Button _editButton;
 
-    [Header("Edit Popup")]
+    [Header("Popups")]
+    [SerializeField] private MachineLineInfoPopup _infoPopup;
     [SerializeField] private MachineLineEditPopup _editPopup;
 
     void Awake()
     {
         _unlockButton.onClick.AddListener(OnUnlockClicked);
-        if (_addMachineButton != null) _addMachineButton.onClick.AddListener(OnAddMachineClicked);
-        if (_upgradeButton != null) _upgradeButton.onClick.AddListener(OnUpgradeClicked);
-        if (_editButton != null) _editButton.onClick.AddListener(OnEditClicked);
+        _infoButton.onClick.AddListener(() => _infoPopup.Open(_line));
+        _editButton.onClick.AddListener(() => _editPopup.Open(_line));
     }
 
     void Start()
@@ -39,7 +38,6 @@ public class MachineLineUI : MonoBehaviour
     private void Refresh()
     {
         bool isUnlocked = _line.IsUnlocked;
-
         _unlockPanel.SetActive(!isUnlocked);
         _managementPanel.SetActive(isUnlocked);
 
@@ -47,11 +45,6 @@ public class MachineLineUI : MonoBehaviour
         {
             _unlockCostText.text = $"{_line.data.unlockCost:F0}$";
             _unlockButton.interactable = _line.CanUnlock();
-        }
-        else
-        {
-            _addMachineButton.interactable = _line.CanAddMachine();
-            _upgradeButton.interactable = _line.CanUpgrade();
         }
     }
 
@@ -61,22 +54,5 @@ public class MachineLineUI : MonoBehaviour
     {
         _line.TryUnlock();
         Refresh();
-    }
-
-    private void OnAddMachineClicked()
-    {
-        _line.AddMachine();
-        Refresh();
-    }
-
-    private void OnUpgradeClicked()
-    {
-        _line.TryUpgrade();
-        Refresh();
-    }
-
-    private void OnEditClicked()
-    {
-        _editPopup.Open(_line);
     }
 }

@@ -19,6 +19,7 @@ public class MachineLine : MonoBehaviour
     public bool IsUnlocked => _isUnlocked;
     public int UpgradeLevel => _upgradeLevel;
     public IReadOnlyList<Machine> Machines => _machines;
+    public int MachineCount => _machines.Count;
     public int MaxMachines => data.maxMachinesPerLevel != null && _upgradeLevel < data.maxMachinesPerLevel.Length
         ? data.maxMachinesPerLevel[_upgradeLevel]
         : 1;
@@ -26,6 +27,21 @@ public class MachineLine : MonoBehaviour
     public float RevenueMultiplier => data.revenueMultiplierPerLevel != null && _upgradeLevel < data.revenueMultiplierPerLevel.Length
         ? data.revenueMultiplierPerLevel[_upgradeLevel]
         : 1f;
+
+    public int TotalNPCsOnLine
+    {
+        get { int n = 0; foreach (var m in _machines) n += m.Occupants.Count; return n; }
+    }
+
+    public float TotalRevenue
+    {
+        get { float t = 0f; foreach (var m in _machines) t += m.TotalRevenue; return t; }
+    }
+
+    public float TotalRevenuePerMinute
+    {
+        get { float t = 0f; foreach (var m in _machines) t += m.RevenuePerMinute; return t; }
+    }
 
     private readonly List<Machine> _machines = new();
 
