@@ -71,6 +71,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public (bool win, float amount) Play(float betAmount)
     {
         float payoutRate = (Line != null && Line.UsePayoutOverride) ? Line.PayoutOverride : data.payoutRate;
+        if (Line != null) payoutRate = Mathf.Clamp01(payoutRate + Line.BonusPayoutRate);
         bool win = Random.value < payoutRate;
         float amount = win ? betAmount * data.winMultiplier : betAmount;
 

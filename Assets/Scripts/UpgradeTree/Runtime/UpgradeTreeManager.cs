@@ -79,18 +79,32 @@ public class UpgradeTreeManager : MonoBehaviour
 
     private void ApplyEffect(UpgradeEffect effect, int newLevel)
     {
-        // À compléter au fur et à mesure que les systèmes sont prêts
+        MachineLine line = effect.targetLine != null
+            ? MachineLineManager.Instance?.FindLine(effect.targetLine)
+            : null;
+
         switch (effect.type)
         {
-            case EffectType.GlobalRevenueMultiplier:
-                // TODO: CurrencyManager.Instance.ApplyRevenueMultiplier(effect.valuePerLevel)
-                break;
-            case EffectType.UnlockNPCSpawning:
-                // TODO: NPCSpawner.Instance.Enable()
-                break;
             case EffectType.UnlockMachineLine:
-                // TODO: MachineLineManager.Instance.UnlockLine(effect.targetLine)
+                line?.Unlock();
                 break;
+
+            case EffectType.MachineLineAddMachines:
+                line?.AddMachinesFromUpgrade((int)effect.valuePerLevel);
+                break;
+
+            case EffectType.MachinePayoutRate:
+                line?.AddBonusPayoutRate(effect.valuePerLevel);
+                break;
+
+            case EffectType.GlobalRevenueMultiplier:
+                // TODO: CurrencyManager
+                break;
+
+            case EffectType.UnlockNPCSpawning:
+                // TODO: NPCSpawner
+                break;
+
             default:
                 break;
         }

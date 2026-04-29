@@ -20,9 +20,6 @@ public class MachineLine : MonoBehaviour
     public int UpgradeLevel => _upgradeLevel;
     public IReadOnlyList<Machine> Machines => _machines;
     public int MachineCount => _machines.Count;
-    public int MaxMachines => data.maxMachinesPerLevel != null && _upgradeLevel < data.maxMachinesPerLevel.Length
-        ? data.maxMachinesPerLevel[_upgradeLevel]
-        : 1;
 
     public float RevenueMultiplier => data.revenueMultiplierPerLevel != null && _upgradeLevel < data.revenueMultiplierPerLevel.Length
         ? data.revenueMultiplierPerLevel[_upgradeLevel]
@@ -44,6 +41,11 @@ public class MachineLine : MonoBehaviour
     }
 
     private readonly List<Machine> _machines = new();
+    private float _bonusPayoutRate = 0f;
+
+    public float BonusPayoutRate => _bonusPayoutRate;
+
+    public void AddBonusPayoutRate(float bonus) => _bonusPayoutRate = Mathf.Clamp01(_bonusPayoutRate + bonus);
 
     void Awake()
     {
@@ -63,11 +65,8 @@ public class MachineLine : MonoBehaviour
 
     // ── Unlock ────────────────────────────────────────────────────────────────
 
-    public bool CanUnlock() => !_isUnlocked && CurrencyManager.Instance.money >= data.unlockCost;
-
-    public bool TryUnlock()
+    public bool Unlock()
     {
-        if (!CurrencyManager.Instance.TrySpendMoney(data.unlockCost)) return false;
         _isUnlocked = true;
 
         // La machine preview devient active
@@ -79,12 +78,12 @@ public class MachineLine : MonoBehaviour
 
     // ── Add Machine ───────────────────────────────────────────────────────────
 
-    public bool CanAddMachine() => _isUnlocked && _machines.Count < MaxMachines;
+    public void AddMachine() => SpawnMachine(locked: false);
 
-    public void AddMachine()
+    public void AddMachinesFromUpgrade(int count)
     {
-        if (!CanAddMachine()) return;
-        SpawnMachine(locked: false);
+        for (int i = 0; i < count; i++)
+            SpawnMachine(locked: false);
     }
 
     // ── Upgrade ───────────────────────────────────────────────────────────────

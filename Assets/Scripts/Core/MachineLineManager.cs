@@ -18,4 +18,6 @@ public class MachineLineManager : MonoBehaviour
     public void RegisterLine(MachineLine line) => _lines.Add(line);
 
     public void UnregisterLine(MachineLine line) => _lines.Remove(line);
+
+    public MachineLine FindLine(MachineLineData data) => _lines.Find(l => l.data == data);
 }
