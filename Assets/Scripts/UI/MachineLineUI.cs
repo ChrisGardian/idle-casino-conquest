@@ -18,8 +18,14 @@ public class MachineLineUI : MonoBehaviour
 
     void Awake()
     {
+        _line.OnUnlocked += Refresh;
         _infoButton.onClick.AddListener(() => _infoPopup.Open(_line));
         _editButton.onClick.AddListener(() => _editPopup.Open(_line));
+    }
+
+    void OnDestroy()
+    {
+        _line.OnUnlocked -= Refresh;
     }
 
     void Start()

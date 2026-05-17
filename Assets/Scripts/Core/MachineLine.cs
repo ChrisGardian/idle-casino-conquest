@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class MachineLine : MonoBehaviour
     [Header("State")]
     [SerializeField] private bool _isUnlocked = false;
     [SerializeField] private int _upgradeLevel = 0;
+
+    public event Action OnUnlocked;
 
     public bool IsUnlocked => _isUnlocked;
     public int UpgradeLevel => _upgradeLevel;
@@ -69,10 +72,10 @@ public class MachineLine : MonoBehaviour
     {
         _isUnlocked = true;
 
-        // La machine preview devient active
         if (_machines.Count > 0)
             _machines[0].SetLocked(false);
 
+        OnUnlocked?.Invoke();
         return true;
     }
 

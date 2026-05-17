@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -86,6 +87,7 @@ public class UpgradeTreeManager : MonoBehaviour
         switch (effect.type)
         {
             case EffectType.UnlockMachineLine:
+                Debug.Log($"Unlocked Machine Line {effect.targetLine?.name}");
                 line?.Unlock();
                 break;
 

@@ -37,7 +37,7 @@ public class MachineLineInfoPopup : MonoBehaviour
     private void Refresh()
     {
         _infoText.text =
-            $"<b>Machines</b>  {_line.MachineCount} / {_line.MaxMachines}\n" +
+            $"<b>Machines</b>  {_line.MachineCount}\n" +
             $"<b>Niveau</b>  {_line.UpgradeLevel}\n" +
             $"<b>NPCs actifs</b>  {_line.TotalNPCsOnLine}\n" +
             $"<b>Revenus totaux</b>  {_line.TotalRevenue:F0}$\n" +

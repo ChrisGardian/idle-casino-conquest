@@ -98,7 +98,7 @@ MonoBehaviour:
     effects:
     - type: 1
       valuePerLevel: 1
-      targetLine: {fileID: 0}
+      targetLine: {fileID: 11400000, guid: f47a05f8f86d20449b7c2149729411b7, type: 2}
   - id: unlock_roulette
     displayName: Unlock Roulette
     description: Unlock the roulette line.
@@ -112,7 +112,7 @@ MonoBehaviour:
     effects:
     - type: 1
       valuePerLevel: 1
-      targetLine: {fileID: 0}
+      targetLine: {fileID: 11400000, guid: 8f1f84e6c55c1fd49a8fe7914499c3cd, type: 2}
   - id: unlock_blackjack
     displayName: Unlock Blackjack
     description: Unlock the blackjack line.
@@ -126,7 +126,7 @@ MonoBehaviour:
     effects:
     - type: 1
       valuePerLevel: 1
-      targetLine: {fileID: 0}
+      targetLine: {fileID: 11400000, guid: 38e946bf654b81e44a74111eaecd3f53, type: 2}
   - id: unlock_craps
     displayName: Unlock Craps
     description: Unlock the craps line.
@@ -140,7 +140,7 @@ MonoBehaviour:
     effects:
     - type: 1
       valuePerLevel: 1
-      targetLine: {fileID: 0}
+      targetLine: {fileID: 11400000, guid: 32946a3c9579f62498b974aca305cd1a, type: 2}
   - id: unlock_bigsixwheel
     displayName: Unlock Big Six Wheel
     description: Unlock the big six wheel line.
@@ -154,7 +154,7 @@ MonoBehaviour:
     effects:
     - type: 1
       valuePerLevel: 1
-      targetLine: {fileID: 0}
+      targetLine: {fileID: 11400000, guid: e9693b77f74d11a4aa5d15c0319997d3, type: 2}
   - id: ml_add_machines
     displayName: Add Machines
     description: Increases the max number of machines per line.
