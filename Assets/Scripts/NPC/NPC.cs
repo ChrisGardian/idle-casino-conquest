@@ -27,6 +27,7 @@ public class NPC : MonoBehaviour
     private int _totalPlays = 0;
     private int _actualWins = 0;
     private float _expectedWins = 0f;
+    private float _sessionNetCasino = 0f;
 
     private float BetAmount => data.baseBetAmount * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
     private float PatienceWinGain => data.basePatienceWinGain * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
@@ -150,6 +151,7 @@ public class NPC : MonoBehaviour
         _headingToMachine = true;
         _walkTarget = machine.GetStandPosition();
         State = NPCState.Walking;
+        _sessionNetCasino = 0f;
     }
 
     private void BeginPlaying()
@@ -177,9 +179,15 @@ public class NPC : MonoBehaviour
 
     private void Play()
     {
-        var (win, amount) = _assignedMachine.Play(BetAmount);
+        float bet = BetAmount;
+        var (win, amount) = _assignedMachine.Play(bet);
         _totalPlays++;
         _expectedWins += _assignedMachine.data.payoutRate;
+
+        float casinoNet = win
+            ? bet * (1f - _assignedMachine.data.winMultiplier) * CurrencyManager.Instance.revenueMultiplier
+            : bet * CurrencyManager.Instance.revenueMultiplier;
+        _sessionNetCasino += casinoNet;
 
         if (win)
         {
@@ -192,10 +200,13 @@ public class NPC : MonoBehaviour
         {
             CurrencyManager.Instance.AddMoney(amount);
         }
+
+        CasinoLogger.LogTransaction(gameObject.name, _assignedMachine.name, bet, win, amount, casinoNet);
     }
 
     private void LeaveMachine()
     {
+        CasinoLogger.LogSessionSummary(gameObject.name, _assignedMachine.name, _totalPlays, _actualWins, _sessionNetCasino);
         _assignedMachine.FreeSlot(this);
         _assignedMachine = null;
 

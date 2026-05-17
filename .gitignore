@@ -490,3 +490,5 @@ Assets/Settings/Lit2DSceneTemplate.scenetemplate
 Assets/Settings/Scenes/
 
 *.slnx
+
+**/.claude/**

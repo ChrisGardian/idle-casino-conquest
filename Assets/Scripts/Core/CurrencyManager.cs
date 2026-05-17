@@ -36,7 +36,9 @@ public class CurrencyManager : MonoBehaviour
     }
 
     public void AddPopularity(float amount)
-    { 
+    {
         popularity = Mathf.Max(1f, popularity + amount);
     }
+
+    void OnApplicationQuit() => CasinoLogger.Close();
 }
