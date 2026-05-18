@@ -67,6 +67,14 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         NPCManagementSystem.Instance.OnMachineSlotFreed(this);
     }
 
+    // Taux attendu par le NPC : base + upgrades, sans le slider joueur
+    public float GetFairPayoutRate()
+    {
+        float rate = data.payoutRate;
+        if (Line != null) rate = Mathf.Clamp01(rate + Line.BonusPayoutRate);
+        return rate;
+    }
+
     // Retourne si le NPC a gagné et le montant concerné (mise * winMultiplier si victoire, mise si défaite)
     public (bool win, float amount) Play(float betAmount)
     {

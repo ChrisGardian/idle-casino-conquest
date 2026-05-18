@@ -67,7 +67,8 @@ public class NPCManagementSystem : MonoBehaviour
     {
         float satisfaction = npc.ComputeSatisfaction();
         // satisfaction = 0 si n'a jamais joué → malus max
-        float popularityDelta = Mathf.Lerp(-popularityModifier, popularityModifier, satisfaction);
+        float currentPopularity = CurrencyManager.Instance.popularity;
+        float popularityDelta = currentPopularity * Mathf.Lerp(-popularityModifier, popularityModifier, satisfaction);
         CurrencyManager.Instance.AddPopularity(popularityDelta);
 
         _allNPCs.Remove(npc);

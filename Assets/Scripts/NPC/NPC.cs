@@ -182,7 +182,7 @@ public class NPC : MonoBehaviour
         float bet = BetAmount;
         var (win, amount) = _assignedMachine.Play(bet);
         _totalPlays++;
-        _expectedWins += _assignedMachine.data.payoutRate;
+        _expectedWins += _assignedMachine.GetFairPayoutRate();
 
         float casinoNet = win
             ? bet * (1f - _assignedMachine.data.winMultiplier) * CurrencyManager.Instance.revenueMultiplier
