@@ -100,7 +100,7 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.GlobalRevenueMultiplier:
-                CurrencyManager.Instance?.AddRevenueMultiplier(effect.valuePerLevel);
+                GameModifiers.revenueMultiplier += effect.valuePerLevel;
                 break;
 
             case EffectType.UnlockNPCSpawning:
@@ -109,6 +109,26 @@ public class UpgradeTreeManager : MonoBehaviour
 
             case EffectType.UnlockVIPs:
                 NPCSpawner.Instance?.UnlockVIPs();
+                break;
+
+            case EffectType.NPCWalkSpeed:
+                GameModifiers.npcWalkSpeedBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.NPCPatience:
+                GameModifiers.npcPatienceBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.NPCBaseGainsMultiplier:
+                GameModifiers.npcBetMultiplierBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.NPCSatisfactionThreshold:
+                GameModifiers.npcSatisfactionThresholdBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.NPCDepartureSatisfactionGain:
+                GameModifiers.npcPatienceWinGainBonus += effect.valuePerLevel;
                 break;
 
             case EffectType.UnlockMachineLineInfoPanel:
@@ -124,11 +144,11 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.NPCArrivalInterval:
-                NPCSpawner.Instance?.AddArrivalIntervalBonus(effect.valuePerLevel);
+                GameModifiers.npcArrivalIntervalBonus += effect.valuePerLevel;
                 break;
 
             case EffectType.VIPSpawnChance:
-                NPCSpawner.Instance?.AddVIPSpawnChanceBonus(effect.valuePerLevel);
+                GameModifiers.vipSpawnChanceBonus += effect.valuePerLevel;
                 break;
 
             case EffectType.MachineSessionDuration:
@@ -136,7 +156,7 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.CasinoReputationMultiplier:
-                CurrencyManager.Instance?.AddReputationMultiplier(effect.valuePerLevel);
+                GameModifiers.reputationMultiplier += effect.valuePerLevel;
                 break;
 
             case EffectType.UnlockCasinoDoor:

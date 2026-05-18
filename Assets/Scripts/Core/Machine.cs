@@ -85,7 +85,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         float amount = win ? betAmount * data.winMultiplier : betAmount;
 
         float casinoNet = win ? betAmount * (1f - data.winMultiplier) : betAmount;
-        casinoNet *= CurrencyManager.Instance.revenueMultiplier;
+        casinoNet *= GameModifiers.revenueMultiplier;
         _totalRevenue += casinoNet;
 
         return (win, amount);

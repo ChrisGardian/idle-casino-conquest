@@ -29,8 +29,8 @@ public class NPC : MonoBehaviour
     private float _expectedWins = 0f;
     private float _sessionNetCasino = 0f;
 
-    private float BetAmount => data.baseBetAmount * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
-    private float PatienceWinGain => data.basePatienceWinGain * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
+    private float BetAmount => data.baseBetAmount * (1f + GameModifiers.npcBetMultiplierBonus) * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
+    private float PatienceWinGain => (data.basePatienceWinGain + GameModifiers.npcPatienceWinGainBonus) * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
 
     void Awake()
     {
@@ -41,7 +41,7 @@ public class NPC : MonoBehaviour
     void Start()
     {
         _spawnPosition = transform.position;
-        _patienceTotal = data.patienceTotal;
+        _patienceTotal = data.patienceTotal + GameModifiers.npcPatienceBonus;
         if (!_headingToMachine)
             PickWanderTarget();
     }
@@ -137,7 +137,7 @@ public class NPC : MonoBehaviour
         if (dist < 0.001f) return;
 
         MovingRight = dir.x > 0f;
-        float step = Mathf.Min(data.walkSpeed * Time.deltaTime, dist);
+        float step = Mathf.Min((data.walkSpeed + GameModifiers.npcWalkSpeedBonus) * Time.deltaTime, dist);
         transform.position += new Vector3(dir.x / dist * step, dir.y / dist * step, 0f);
     }
 
@@ -185,8 +185,8 @@ public class NPC : MonoBehaviour
         _expectedWins += _assignedMachine.GetFairPayoutRate();
 
         float casinoNet = win
-            ? bet * (1f - _assignedMachine.data.winMultiplier) * CurrencyManager.Instance.revenueMultiplier
-            : bet * CurrencyManager.Instance.revenueMultiplier;
+            ? bet * (1f - _assignedMachine.data.winMultiplier) * GameModifiers.revenueMultiplier
+            : bet * GameModifiers.revenueMultiplier;
         _sessionNetCasino += casinoNet;
 
         if (win)

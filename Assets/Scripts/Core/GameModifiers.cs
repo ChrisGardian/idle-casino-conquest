@@ -1,0 +1,15 @@
+public static class GameModifiers
+{
+    // ── NPC ───────────────────────────────────────────────────────────────────
+    public static float npcWalkSpeedBonus = 0f;
+    public static float npcPatienceBonus = 0f;
+    public static float npcBetMultiplierBonus = 0f;
+    public static float npcSatisfactionThresholdBonus = 0f;
+    public static float npcPatienceWinGainBonus = 0f;
+    public static float npcArrivalIntervalBonus = 0f;
+    public static float vipSpawnChanceBonus = 0f;
+
+    // ── Global ────────────────────────────────────────────────────────────────
+    public static float revenueMultiplier = 1f;
+    public static float reputationMultiplier = 1f;
+}

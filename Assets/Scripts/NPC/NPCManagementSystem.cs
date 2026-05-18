@@ -65,8 +65,7 @@ public class NPCManagementSystem : MonoBehaviour
     // Appelé quand patienceTotal = 0 et machine libérée (ou pas de machine)
     public void OnNPCLeaving(NPC npc)
     {
-        float satisfaction = npc.ComputeSatisfaction();
-        // satisfaction = 0 si n'a jamais joué → malus max
+        float satisfaction = Mathf.Clamp01(npc.ComputeSatisfaction() + GameModifiers.npcSatisfactionThresholdBonus);
         float currentPopularity = CurrencyManager.Instance.popularity;
         float popularityDelta = currentPopularity * Mathf.Lerp(-popularityModifier, popularityModifier, satisfaction);
         CurrencyManager.Instance.AddPopularity(popularityDelta);
