@@ -8,6 +8,15 @@ public class MachineLineEditPopup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _payoutValueText;
     [SerializeField] private Button _closeButton;
 
+    public static bool IsUnlocked { get; private set; } = false;
+    public static event System.Action OnUnlocked;
+
+    public static void Unlock()
+    {
+        IsUnlocked = true;
+        OnUnlocked?.Invoke();
+    }
+
     private MachineLine _line;
 
     void Awake()
@@ -21,6 +30,7 @@ public class MachineLineEditPopup : MonoBehaviour
 
     public void Open(MachineLine line)
     {
+        if (!IsUnlocked) return;
         _line = line;
 
         float defaultRate = line.data.machinePrefab.GetComponent<Machine>().data.payoutRate;

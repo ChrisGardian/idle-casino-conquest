@@ -220,7 +220,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 120
+    baseCost: 0
     growthFactor: 1
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: 1600}
@@ -234,7 +234,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 250
+    baseCost: 0
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
     treePosition: {x: 1200, y: 1600}
@@ -248,7 +248,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 800
+    baseCost: 0
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
     treePosition: {x: 1200, y: 2100}

@@ -111,6 +111,18 @@ public class UpgradeTreeManager : MonoBehaviour
                 NPCSpawner.Instance?.UnlockVIPs();
                 break;
 
+            case EffectType.UnlockMachineLineInfoPanel:
+                MachineLineInfoPopup.Unlock();
+                break;
+
+            case EffectType.UnlockMachineInfoPanel:
+                MachineInfoDisplay.Unlock();
+                break;
+
+            case EffectType.UnlockMachineLinePayoutEdit:
+                MachineLineEditPopup.Unlock();
+                break;
+
             case EffectType.NPCArrivalInterval:
                 NPCSpawner.Instance?.AddArrivalIntervalBonus(effect.valuePerLevel);
                 break;

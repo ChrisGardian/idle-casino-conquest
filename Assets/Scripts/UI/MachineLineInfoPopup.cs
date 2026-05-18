@@ -7,6 +7,15 @@ public class MachineLineInfoPopup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _infoText;
     [SerializeField] private Button _closeButton;
 
+    public static bool IsUnlocked { get; private set; } = false;
+    public static event System.Action OnUnlocked;
+
+    public static void Unlock()
+    {
+        IsUnlocked = true;
+        OnUnlocked?.Invoke();
+    }
+
     private MachineLine _line;
     private float _refreshTimer;
     private const float RefreshInterval = 1f;
@@ -29,6 +38,7 @@ public class MachineLineInfoPopup : MonoBehaviour
 
     public void Open(MachineLine line)
     {
+        if (!IsUnlocked) return;
         _line = line;
         _refreshTimer = RefreshInterval;
         gameObject.SetActive(true);

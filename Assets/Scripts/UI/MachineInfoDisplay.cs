@@ -7,6 +7,9 @@ public class MachineInfoDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private float refreshInterval = 0.5f;
 
+    public static bool IsUnlocked { get; private set; } = false;
+    public static void Unlock() => IsUnlocked = true;
+
     private Machine _machine;
     private StringBuilder _sb = new();
 
@@ -18,6 +21,7 @@ public class MachineInfoDisplay : MonoBehaviour
 
     public void Show()
     {
+        if (!IsUnlocked) return;
         gameObject.SetActive(true);
         InvokeRepeating(nameof(Refresh), 0f, refreshInterval);
     }

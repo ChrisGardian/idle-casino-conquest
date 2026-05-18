@@ -19,6 +19,8 @@ public class MachineLineUI : MonoBehaviour
     void Awake()
     {
         _line.OnUnlocked += Refresh;
+        MachineLineInfoPopup.OnUnlocked += Refresh;
+        MachineLineEditPopup.OnUnlocked += Refresh;
         _infoButton.onClick.AddListener(() => _infoPopup.Open(_line));
         _editButton.onClick.AddListener(() => _editPopup.Open(_line));
     }
@@ -26,6 +28,8 @@ public class MachineLineUI : MonoBehaviour
     void OnDestroy()
     {
         _line.OnUnlocked -= Refresh;
+        MachineLineInfoPopup.OnUnlocked -= Refresh;
+        MachineLineEditPopup.OnUnlocked -= Refresh;
     }
 
     void Start()
@@ -36,5 +40,7 @@ public class MachineLineUI : MonoBehaviour
     public void Refresh()
     {
         _managementPanel.SetActive(_line.IsUnlocked);
+        _infoButton.gameObject.SetActive(MachineLineInfoPopup.IsUnlocked);
+        _editButton.gameObject.SetActive(MachineLineEditPopup.IsUnlocked);
     }
 }
