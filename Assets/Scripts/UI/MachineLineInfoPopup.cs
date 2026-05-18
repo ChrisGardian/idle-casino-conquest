@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MachineLineInfoPopup : MonoBehaviour
@@ -18,6 +19,7 @@ public class MachineLineInfoPopup : MonoBehaviour
 
     private MachineLine _line;
     private float _refreshTimer;
+    private bool _skipCloseFrame;
     private const float RefreshInterval = 1f;
 
     void Awake()
@@ -28,6 +30,14 @@ public class MachineLineInfoPopup : MonoBehaviour
 
     void Update()
     {
+        if (_skipCloseFrame) { _skipCloseFrame = false; }
+        else if (Mouse.current.leftButton.wasPressedThisFrame && !RectTransformUtility.RectangleContainsScreenPoint(
+            (RectTransform)transform, Mouse.current.position.ReadValue(), null))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         _refreshTimer += Time.deltaTime;
         if (_refreshTimer >= RefreshInterval)
         {
@@ -41,6 +51,7 @@ public class MachineLineInfoPopup : MonoBehaviour
         if (!IsUnlocked) return;
         _line = line;
         _refreshTimer = RefreshInterval;
+        _skipCloseFrame = true;
         gameObject.SetActive(true);
     }
 

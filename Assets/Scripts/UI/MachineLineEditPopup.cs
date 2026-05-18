@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MachineLineEditPopup : MonoBehaviour
@@ -18,6 +19,7 @@ public class MachineLineEditPopup : MonoBehaviour
     }
 
     private MachineLine _line;
+    private bool _skipCloseFrame;
 
     void Awake()
     {
@@ -28,10 +30,21 @@ public class MachineLineEditPopup : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    void Update()
+    {
+        if (_skipCloseFrame) { _skipCloseFrame = false; return; }
+        if (Mouse.current.leftButton.wasPressedThisFrame && !RectTransformUtility.RectangleContainsScreenPoint(
+            (RectTransform)transform, Mouse.current.position.ReadValue(), null))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Open(MachineLine line)
     {
         if (!IsUnlocked) return;
         _line = line;
+        _skipCloseFrame = true;
 
         float defaultRate = line.data.machinePrefab.GetComponent<Machine>().data.payoutRate;
         float initialValue = line.UsePayoutOverride ? line.PayoutOverride : defaultRate;
