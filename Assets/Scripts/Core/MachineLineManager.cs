@@ -9,10 +9,20 @@ public class MachineLineManager : MonoBehaviour
 
     public IReadOnlyList<MachineLine> Lines => _lines;
 
+    [Header("Debug")]
+    [SerializeField] private bool _debugUnlockAll = false;
+
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+    }
+
+    void Start()
+    {
+        if (!_debugUnlockAll) return;
+        foreach (var line in _lines)
+            if (!line.IsUnlocked) line.Unlock();
     }
 
     public void RegisterLine(MachineLine line) => _lines.Add(line);

@@ -24,6 +24,8 @@ public class CurrencyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start() => CasinoLogger.LogGameStart(money);
+
     // Use with negative value for NPCs (they can bring you in negative by winning)
     public void AddMoney(float amount) => money += amount;
 
@@ -40,5 +42,5 @@ public class CurrencyManager : MonoBehaviour
         popularity = Mathf.Max(1f, popularity + amount);
     }
 
-    void OnApplicationQuit() => CasinoLogger.Close();
+    void OnApplicationQuit() => CasinoLogger.Close(money);
 }

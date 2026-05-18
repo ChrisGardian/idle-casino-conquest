@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   totalSlots: 1
   payoutRate: 0.3
-  winMultiplier: 3
+  winMultiplier: 2
   betAmountMultiplier: 0.7
   sessionDuration: 8
   patienceWinGainMultiplier: 0.2

@@ -57,8 +57,7 @@ public class MachineLine : MonoBehaviour
 
     void Start()
     {
-        if (!_isUnlocked)
-            SpawnMachine(locked: true);
+        SpawnMachine(locked: !_isUnlocked);
     }
 
     void OnDestroy()

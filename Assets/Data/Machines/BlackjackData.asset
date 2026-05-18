@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackjackData
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   totalSlots: 1
-  payoutRate: 0.47
+  payoutRate: 0.4
   winMultiplier: 2
   betAmountMultiplier: 2
   sessionDuration: 35

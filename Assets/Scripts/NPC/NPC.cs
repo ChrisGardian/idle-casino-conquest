@@ -201,12 +201,12 @@ public class NPC : MonoBehaviour
             CurrencyManager.Instance.AddMoney(amount);
         }
 
-        CasinoLogger.LogTransaction(gameObject.name, _assignedMachine.name, bet, win, amount, casinoNet);
+        CasinoLogger.LogTransaction(gameObject.name, _assignedMachine.name, _assignedMachine.Line?.name ?? "?", bet, win, amount, casinoNet);
     }
 
     private void LeaveMachine()
     {
-        CasinoLogger.LogSessionSummary(gameObject.name, _assignedMachine.name, _totalPlays, _actualWins, _sessionNetCasino);
+        CasinoLogger.LogSessionSummary(gameObject.name, _assignedMachine.name, _assignedMachine.Line?.name ?? "?", _totalPlays, _actualWins, _sessionNetCasino);
         _assignedMachine.FreeSlot(this);
         _assignedMachine = null;
 
