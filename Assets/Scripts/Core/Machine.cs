@@ -12,6 +12,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private Transform _standPoint;
 
     public bool HasFreeSlot => _occupants.Count < data.totalSlots;
+    public float SessionDuration => data.sessionDuration + (Line != null ? Line.BonusSessionDuration : 0f);
     public IReadOnlyList<NPC> Occupants => _occupants;
     public float TotalRevenue => _totalRevenue;
     public float RevenuePerMinute => _trackingTime > 1f ? _totalRevenue / _trackingTime * 60f : 0f;

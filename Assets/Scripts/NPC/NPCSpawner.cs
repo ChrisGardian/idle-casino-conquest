@@ -28,6 +28,13 @@ public class NPCSpawner : MonoBehaviour
     private float _spawnTimer;
     private int _npcCount = 0;
     private bool _active = false;
+    private bool _vipsUnlocked = false;
+    private float _arrivalIntervalBonus = 0f;
+    private float _vipSpawnChanceBonus = 0f;
+
+    public void AddArrivalIntervalBonus(float bonus) => _arrivalIntervalBonus += bonus;
+    public void AddVIPSpawnChanceBonus(float bonus) => _vipSpawnChanceBonus += bonus;
+    public void UnlockVIPs() => _vipsUnlocked = true;
 
     void Awake()
     {
@@ -62,7 +69,7 @@ public class NPCSpawner : MonoBehaviour
             0f
             );
 
-        bool spawnVIP = vipPrefab != null && Random.value < vipSpawnChance;
+        bool spawnVIP = _vipsUnlocked && vipPrefab != null && Random.value < Mathf.Clamp01(vipSpawnChance + _vipSpawnChanceBonus);
         GameObject prefab = spawnVIP ? vipPrefab : npcPrefab;
 
         GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity, npcParent.transform);
@@ -73,7 +80,7 @@ public class NPCSpawner : MonoBehaviour
 
     private float GetSpawnInterval()
     {
-        float interval = baseSpawnInterval / Mathf.Pow(CurrencyManager.Instance.popularity, popularityExponent);
+        float interval = baseSpawnInterval / (1f + _arrivalIntervalBonus) / Mathf.Pow(CurrencyManager.Instance.popularity, popularityExponent);
 
         int totalSlots = NPCManagementSystem.Instance.TotalSlots;
         if (totalSlots > 0)

@@ -107,6 +107,26 @@ public class UpgradeTreeManager : MonoBehaviour
                 NPCSpawner.Instance?.Activate();
                 break;
 
+            case EffectType.UnlockVIPs:
+                NPCSpawner.Instance?.UnlockVIPs();
+                break;
+
+            case EffectType.NPCArrivalInterval:
+                NPCSpawner.Instance?.AddArrivalIntervalBonus(effect.valuePerLevel);
+                break;
+
+            case EffectType.VIPSpawnChance:
+                NPCSpawner.Instance?.AddVIPSpawnChanceBonus(effect.valuePerLevel);
+                break;
+
+            case EffectType.MachineSessionDuration:
+                line?.AddBonusSessionDuration(effect.valuePerLevel);
+                break;
+
+            case EffectType.CasinoReputationMultiplier:
+                CurrencyManager.Instance?.AddReputationMultiplier(effect.valuePerLevel);
+                break;
+
             case EffectType.UnlockCasinoDoor:
                 // TODO: ouvrir la sprite de la porte du casino
                 break;

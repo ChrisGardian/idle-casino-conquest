@@ -45,10 +45,13 @@ public class MachineLine : MonoBehaviour
 
     private readonly List<Machine> _machines = new();
     private float _bonusPayoutRate = 0f;
+    private float _bonusSessionDuration = 0f;
 
     public float BonusPayoutRate => _bonusPayoutRate;
+    public float BonusSessionDuration => _bonusSessionDuration;
 
     public void AddBonusPayoutRate(float bonus) => _bonusPayoutRate = Mathf.Clamp01(_bonusPayoutRate + bonus);
+    public void AddBonusSessionDuration(float bonus) => _bonusSessionDuration += bonus;
 
     void Awake()
     {

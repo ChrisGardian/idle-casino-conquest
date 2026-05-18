@@ -146,7 +146,7 @@ public class NPC : MonoBehaviour
     public void AssignMachine(Machine machine)
     {
         _assignedMachine = machine;
-        _patienceMachine = machine.data.sessionDuration;
+        _patienceMachine = machine.SessionDuration;
         _playTimer = data.playInterval;
         _headingToMachine = true;
         _walkTarget = machine.GetStandPosition();

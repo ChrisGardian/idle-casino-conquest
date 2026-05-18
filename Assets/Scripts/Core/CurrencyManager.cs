@@ -10,8 +10,10 @@ public class CurrencyManager : MonoBehaviour
 
     [Header("Multipliers")]
     public float revenueMultiplier = 1f;
+    public float reputationMultiplier = 1f;
 
     public void AddRevenueMultiplier(float bonus) => revenueMultiplier += bonus;
+    public void AddReputationMultiplier(float bonus) => reputationMultiplier += bonus;
 
     void Awake()
     {
@@ -39,6 +41,7 @@ public class CurrencyManager : MonoBehaviour
 
     public void AddPopularity(float amount)
     {
+        if (amount > 0f) amount *= reputationMultiplier;
         popularity = Mathf.Max(1f, popularity + amount);
     }
 
