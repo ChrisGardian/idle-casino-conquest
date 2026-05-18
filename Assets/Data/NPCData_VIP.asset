@@ -16,4 +16,8 @@ MonoBehaviour:
   patienceTotal: 300
   baseBetAmount: 100
   basePatienceWinGain: 0.8
-  playInterval: 3
+  playInterval: 12
+  walkSpeed: 2
+  wanderRadius: 3
+  wanderPauseMin: 1
+  wanderPauseMax: 3

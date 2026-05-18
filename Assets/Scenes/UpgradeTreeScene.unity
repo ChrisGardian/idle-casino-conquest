@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
   money: 100000000
   popularity: 2
+  revenueMultiplier: 1
 --- !u!1 &1873814402
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +572,7 @@ MonoBehaviour:
   _enableEdgeScroll: 1
   _edgeScrollSpeed: 5
   _edgeThickness: 20
-  _zoomSpeed: 30
+  _zoomSpeed: 80
   _minZoom: 2
   _maxZoom: 12
   _boundsCollider: {fileID: 0}

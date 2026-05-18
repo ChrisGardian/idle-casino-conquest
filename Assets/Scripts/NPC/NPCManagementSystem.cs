@@ -18,6 +18,16 @@ public class NPCManagementSystem : MonoBehaviour
 
     public float numberOfNPCs => _allNPCs.Count;
 
+    public int TotalSlots
+    {
+        get { int n = 0; foreach (var m in _machines) n += m.data.totalSlots; return n; }
+    }
+
+    public int TotalFreeSlots
+    {
+        get { int n = 0; foreach (var m in _machines) n += m.data.totalSlots - m.Occupants.Count; return n; }
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }

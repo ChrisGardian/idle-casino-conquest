@@ -35,10 +35,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 1000
+    baseCost: 50
     growthFactor: 1.8
     prerequisiteId: open_casino
-    treePosition: {x: 0, y: -200}
+    treePosition: {x: -600, y: 300}
     effects:
     - type: 27
       valuePerLevel: 0.1
@@ -49,10 +49,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 800
+    baseCost: 40
     growthFactor: 1.7
     prerequisiteId: open_casino
-    treePosition: {x: 0, y: -400}
+    treePosition: {x: -600, y: -300}
     effects:
     - type: 28
       valuePerLevel: 0.05
@@ -63,10 +63,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 2000
+    baseCost: 100
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: 0, y: -600}
+    treePosition: {x: -1200, y: 0}
     effects:
     - type: 9
       valuePerLevel: 1
@@ -77,10 +77,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 50000
+    baseCost: 5000
     growthFactor: 1
     prerequisiteId: global_revenue
-    treePosition: {x: 0, y: -800}
+    treePosition: {x: -1800, y: 300}
     effects:
     - type: 10
       valuePerLevel: 1
@@ -91,10 +91,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 500
+    baseCost: 10
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: 600, y: 0}
+    treePosition: {x: 0, y: 500}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -108,10 +108,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 2000
+    baseCost: 200
     growthFactor: 1
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: -200}
+    treePosition: {x: 0, y: 1000}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -122,10 +122,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 8000
+    baseCost: 800
     growthFactor: 1
     prerequisiteId: unlock_roulette
-    treePosition: {x: 600, y: -400}
+    treePosition: {x: 0, y: 1500}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -136,10 +136,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 25000
+    baseCost: 3000
     growthFactor: 1
     prerequisiteId: unlock_blackjack
-    treePosition: {x: 600, y: -600}
+    treePosition: {x: 0, y: 2000}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -150,52 +150,24 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 80000
+    baseCost: 10000
     growthFactor: 1
     prerequisiteId: unlock_craps
-    treePosition: {x: 600, y: -800}
+    treePosition: {x: 0, y: 2500}
     effects:
     - type: 1
       valuePerLevel: 1
       targetLine: {fileID: 11400000, guid: e9693b77f74d11a4aa5d15c0319997d3, type: 2}
-  - id: ml_add_machines
-    displayName: Add Machines
-    description: Increases the max number of machines per line.
-    icon: {fileID: 0}
-    nodeType: 1
-    maxLevel: 5
-    baseCost: 1500
-    growthFactor: 2
-    prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: -1000}
-    effects:
-    - type: 12
-      valuePerLevel: 1
-      targetLine: {fileID: 0}
-  - id: ml_slots_per_machine
-    displayName: Slots per Machine
-    description: Adds an extra NPC slot per machine.
-    icon: {fileID: 0}
-    nodeType: 1
-    maxLevel: 3
-    baseCost: 3000
-    growthFactor: 2.2
-    prerequisiteId: ml_add_machines
-    treePosition: {x: 600, y: -1200}
-    effects:
-    - type: 13
-      valuePerLevel: 1
-      targetLine: {fileID: 0}
   - id: ml_payout_rate
     displayName: Payout Rate
     description: Increases the base payout rate of machines.
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 2000
+    baseCost: 50
     growthFactor: 1.9
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: -1400}
+    treePosition: {x: 600, y: 600}
     effects:
     - type: 14
       valuePerLevel: 0.02
@@ -206,13 +178,41 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 1200
+    baseCost: 40
     growthFactor: 1.7
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: -1600}
+    treePosition: {x: 600, y: 1100}
     effects:
     - type: 15
       valuePerLevel: 2
+      targetLine: {fileID: 0}
+  - id: ml_add_machines
+    displayName: Add Machines
+    description: Increases the max number of machines per line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 150
+    growthFactor: 2
+    prerequisiteId: unlock_slots
+    treePosition: {x: 1200, y: 600}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: ml_slots_per_machine
+    displayName: Slots per Machine
+    description: Adds an extra NPC slot per machine.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 3
+    baseCost: 500
+    growthFactor: 2.2
+    prerequisiteId: ml_add_machines
+    treePosition: {x: 1200, y: 1100}
+    effects:
+    - type: 13
+      valuePerLevel: 1
       targetLine: {fileID: 0}
   - id: unlock_ml_info_panel
     displayName: Machine Line Info Panel
@@ -220,10 +220,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 1000
+    baseCost: 120
     growthFactor: 1
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: -1800}
+    treePosition: {x: 600, y: 1600}
     effects:
     - type: 5
       valuePerLevel: 1
@@ -234,10 +234,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 1500
+    baseCost: 250
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
-    treePosition: {x: 600, y: -2000}
+    treePosition: {x: 1200, y: 1600}
     effects:
     - type: 6
       valuePerLevel: 1
@@ -248,10 +248,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 5000
+    baseCost: 800
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
-    treePosition: {x: 600, y: -2200}
+    treePosition: {x: 1200, y: 2100}
     effects:
     - type: 7
       valuePerLevel: 1
@@ -262,27 +262,13 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 400
+    baseCost: 20
     growthFactor: 1.6
     prerequisiteId: open_casino
-    treePosition: {x: 1200, y: 0}
+    treePosition: {x: 800, y: 200}
     effects:
     - type: 17
       valuePerLevel: 0.1
-      targetLine: {fileID: 0}
-  - id: npc_patience
-    displayName: NPC Patience
-    description: NPCs wait longer before leaving.
-    icon: {fileID: 0}
-    nodeType: 1
-    maxLevel: 5
-    baseCost: 500
-    growthFactor: 1.7
-    prerequisiteId: open_casino
-    treePosition: {x: 1200, y: -200}
-    effects:
-    - type: 18
-      valuePerLevel: 2
       targetLine: {fileID: 0}
   - id: npc_arrival_interval
     displayName: NPC Arrival Interval
@@ -290,13 +276,27 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 600
+    baseCost: 20
     growthFactor: 1.8
     prerequisiteId: open_casino
-    treePosition: {x: 1200, y: -400}
+    treePosition: {x: 800, y: 0}
     effects:
     - type: 16
       valuePerLevel: -0.5
+      targetLine: {fileID: 0}
+  - id: npc_patience
+    displayName: NPC Patience
+    description: NPCs wait longer before leaving.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 15
+    growthFactor: 1.7
+    prerequisiteId: open_casino
+    treePosition: {x: 800, y: -200}
+    effects:
+    - type: 18
+      valuePerLevel: 2
       targetLine: {fileID: 0}
   - id: npc_colors
     displayName: NPC Colors
@@ -304,13 +304,27 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 800
+    baseCost: 25
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: 1200, y: -600}
+    treePosition: {x: 800, y: 400}
     effects:
     - type: 4
       valuePerLevel: 1
+      targetLine: {fileID: 0}
+  - id: npc_base_gains
+    displayName: NPC Base Gains Multiplier
+    description: Multiplies earnings from regular NPCs.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 30
+    growthFactor: 1.9
+    prerequisiteId: open_casino
+    treePosition: {x: 800, y: -400}
+    effects:
+    - type: 19
+      valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_satisfaction
     displayName: NPC Satisfaction Threshold
@@ -318,10 +332,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 700
+    baseCost: 100
     growthFactor: 1.7
     prerequisiteId: npc_patience
-    treePosition: {x: 1200, y: -800}
+    treePosition: {x: 1500, y: -200}
     effects:
     - type: 20
       valuePerLevel: 0.05
@@ -332,26 +346,12 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 900
+    baseCost: 300
     growthFactor: 1.8
     prerequisiteId: npc_satisfaction
-    treePosition: {x: 1200, y: -1000}
+    treePosition: {x: 2200, y: -200}
     effects:
     - type: 21
-      valuePerLevel: 0.1
-      targetLine: {fileID: 0}
-  - id: npc_base_gains
-    displayName: NPC Base Gains Multiplier
-    description: Multiplies earnings from regular NPCs.
-    icon: {fileID: 0}
-    nodeType: 1
-    maxLevel: 5
-    baseCost: 1000
-    growthFactor: 1.9
-    prerequisiteId: open_casino
-    treePosition: {x: 1200, y: -1200}
-    effects:
-    - type: 19
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: unlock_vips
@@ -360,10 +360,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 5000
+    baseCost: 500
     growthFactor: 1
     prerequisiteId: npc_arrival_interval
-    treePosition: {x: 1800, y: 0}
+    treePosition: {x: 2200, y: 0}
     effects:
     - type: 2
       valuePerLevel: 1
@@ -374,10 +374,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 2000
+    baseCost: 300
     growthFactor: 1.9
     prerequisiteId: unlock_vips
-    treePosition: {x: 1800, y: -200}
+    treePosition: {x: 2800, y: 200}
     effects:
     - type: 22
       valuePerLevel: 0.02
@@ -388,10 +388,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 1500
+    baseCost: 200
     growthFactor: 1.6
     prerequisiteId: unlock_vips
-    treePosition: {x: 1800, y: -400}
+    treePosition: {x: 2800, y: -300}
     effects:
     - type: 23
       valuePerLevel: 0.1
@@ -402,10 +402,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 1800
+    baseCost: 250
     growthFactor: 1.7
     prerequisiteId: unlock_vips
-    treePosition: {x: 1800, y: -600}
+    treePosition: {x: 2800, y: 0}
     effects:
     - type: 24
       valuePerLevel: 3
@@ -416,10 +416,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 3000
+    baseCost: 400
     growthFactor: 2
     prerequisiteId: unlock_vips
-    treePosition: {x: 1800, y: -800}
+    treePosition: {x: 2800, y: 500}
     effects:
     - type: 25
       valuePerLevel: 0.15
@@ -430,10 +430,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 8000
+    baseCost: 1500
     growthFactor: 1
     prerequisiteId: vip_spawn_chance
-    treePosition: {x: 1800, y: -1000}
+    treePosition: {x: 3400, y: 200}
     effects:
     - type: 8
       valuePerLevel: 1
@@ -444,10 +444,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 4000
+    baseCost: 1000
     growthFactor: 1.9
     prerequisiteId: unlock_vip_referral
-    treePosition: {x: 1800, y: -1200}
+    treePosition: {x: 3400, y: 500}
     effects:
     - type: 26
       valuePerLevel: 0.05
@@ -458,10 +458,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 30000
+    baseCost: 5000
     growthFactor: 1
     prerequisiteId: vip_base_gains
-    treePosition: {x: 1800, y: -1400}
+    treePosition: {x: 3400, y: 700}
     effects:
     - type: 3
       valuePerLevel: 1

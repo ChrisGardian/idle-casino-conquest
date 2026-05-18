@@ -3210,7 +3210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e172da4efdc9ec144bcba45648b5bd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
-  money: 1000
+  money: 10
   popularity: 2
   revenueMultiplier: 1
 --- !u!4 &1570811299
@@ -3275,7 +3275,7 @@ MonoBehaviour:
   npcPrefab: {fileID: 1315836158632257480, guid: dfe0de61af5eb0c4e99acf8a815762bb, type: 3}
   vipPrefab: {fileID: 1315836158632257480, guid: 0d12910d7fc5164409b01b4f71b39a8c, type: 3}
   npcParent: {fileID: 1846564076}
-  baseSpawnInterval: 15
+  baseSpawnInterval: 30
   vipSpawnChance: 0.05
 --- !u!4 &1634091402
 Transform:

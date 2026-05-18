@@ -8,7 +8,17 @@ public class NPCSpawner : MonoBehaviour
     public GameObject npcPrefab;
     public GameObject vipPrefab;
     public GameObject npcParent;
-    public float baseSpawnInterval = 10f;
+    public float baseSpawnInterval = 40f;
+    public float firstSpawnDelay = 3f;
+
+    [Header("Spawn Tuning")]
+    [Tooltip("Exposant de la popularity (0.5 = racine carrée, atténue l'effet)")]
+    [Range(0.1f, 1f)]
+    public float popularityExponent = 0.5f;
+    [Tooltip("Multiplicateur d'intervalle quand toutes les places sont occupées (> 1 = plus lent)")]
+    public float crowdedIntervalMultiplier = 1.5f;
+    [Tooltip("Multiplicateur d'intervalle quand toutes les places sont libres (< 1 = plus rapide)")]
+    public float spaciousIntervalMultiplier = 0.75f;
 
     [Range(0f, 1f)]
     public float vipSpawnChance = 0.1f;
@@ -29,7 +39,7 @@ public class NPCSpawner : MonoBehaviour
     {
         if (_active) return;
         _active = true;
-        _spawnTimer = GetSpawnInterval();
+        _spawnTimer = firstSpawnDelay;
     }
 
     void Update()
@@ -63,6 +73,15 @@ public class NPCSpawner : MonoBehaviour
 
     private float GetSpawnInterval()
     {
-        return baseSpawnInterval / CurrencyManager.Instance.popularity;
+        float interval = baseSpawnInterval / Mathf.Pow(CurrencyManager.Instance.popularity, popularityExponent);
+
+        int totalSlots = NPCManagementSystem.Instance.TotalSlots;
+        if (totalSlots > 0)
+        {
+            float freeRatio = (float)NPCManagementSystem.Instance.TotalFreeSlots / totalSlots;
+            interval *= Mathf.Lerp(crowdedIntervalMultiplier, spaciousIntervalMultiplier, freeRatio);
+        }
+
+        return interval;
     }
 }
