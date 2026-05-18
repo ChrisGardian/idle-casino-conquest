@@ -26,7 +26,7 @@ MonoBehaviour:
     prerequisiteId: 
     treePosition: {x: 0, y: 0}
     effects:
-    - type: 0
+    - type: 11
       valuePerLevel: 1
       targetLine: {fileID: 0}
   - id: global_revenue
@@ -40,7 +40,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 0, y: -200}
     effects:
-    - type: 26
+    - type: 27
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: casino_reputation
@@ -54,7 +54,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 0, y: -400}
     effects:
-    - type: 27
+    - type: 28
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: analytics_board
@@ -99,6 +99,9 @@ MonoBehaviour:
     - type: 1
       valuePerLevel: 1
       targetLine: {fileID: 11400000, guid: f47a05f8f86d20449b7c2149729411b7, type: 2}
+    - type: 0
+      valuePerLevel: 1
+      targetLine: {fileID: 0}
   - id: unlock_roulette
     displayName: Unlock Roulette
     description: Unlock the roulette line.
@@ -166,7 +169,7 @@ MonoBehaviour:
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: -1000}
     effects:
-    - type: 11
+    - type: 12
       valuePerLevel: 1
       targetLine: {fileID: 0}
   - id: ml_slots_per_machine
@@ -180,7 +183,7 @@ MonoBehaviour:
     prerequisiteId: ml_add_machines
     treePosition: {x: 600, y: -1200}
     effects:
-    - type: 12
+    - type: 13
       valuePerLevel: 1
       targetLine: {fileID: 0}
   - id: ml_payout_rate
@@ -194,7 +197,7 @@ MonoBehaviour:
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: -1400}
     effects:
-    - type: 13
+    - type: 14
       valuePerLevel: 0.02
       targetLine: {fileID: 0}
   - id: ml_session_duration
@@ -208,7 +211,7 @@ MonoBehaviour:
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: -1600}
     effects:
-    - type: 14
+    - type: 15
       valuePerLevel: 2
       targetLine: {fileID: 0}
   - id: unlock_ml_info_panel
@@ -264,7 +267,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 1200, y: 0}
     effects:
-    - type: 16
+    - type: 17
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_patience
@@ -278,7 +281,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 1200, y: -200}
     effects:
-    - type: 17
+    - type: 18
       valuePerLevel: 2
       targetLine: {fileID: 0}
   - id: npc_arrival_interval
@@ -292,7 +295,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 1200, y: -400}
     effects:
-    - type: 15
+    - type: 16
       valuePerLevel: -0.5
       targetLine: {fileID: 0}
   - id: npc_colors
@@ -320,7 +323,7 @@ MonoBehaviour:
     prerequisiteId: npc_patience
     treePosition: {x: 1200, y: -800}
     effects:
-    - type: 19
+    - type: 20
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: npc_departure_gain
@@ -334,7 +337,7 @@ MonoBehaviour:
     prerequisiteId: npc_satisfaction
     treePosition: {x: 1200, y: -1000}
     effects:
-    - type: 20
+    - type: 21
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_base_gains
@@ -348,7 +351,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 1200, y: -1200}
     effects:
-    - type: 18
+    - type: 19
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: unlock_vips
@@ -376,7 +379,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 1800, y: -200}
     effects:
-    - type: 21
+    - type: 22
       valuePerLevel: 0.02
       targetLine: {fileID: 0}
   - id: vip_walk_speed
@@ -390,7 +393,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 1800, y: -400}
     effects:
-    - type: 22
+    - type: 23
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: vip_patience
@@ -404,7 +407,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 1800, y: -600}
     effects:
-    - type: 23
+    - type: 24
       valuePerLevel: 3
       targetLine: {fileID: 0}
   - id: vip_base_gains
@@ -418,7 +421,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 1800, y: -800}
     effects:
-    - type: 24
+    - type: 25
       valuePerLevel: 0.15
       targetLine: {fileID: 0}
   - id: unlock_vip_referral
@@ -446,7 +449,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vip_referral
     treePosition: {x: 1800, y: -1200}
     effects:
-    - type: 25
+    - type: 26
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: unlock_golden_vips

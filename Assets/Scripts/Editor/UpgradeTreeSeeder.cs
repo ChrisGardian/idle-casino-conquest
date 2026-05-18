@@ -51,7 +51,7 @@ public static class UpgradeTreeSeeder
         // ── Casino ────────────────────────────────────────────────────────────
         new("open_casino",          "Open Casino",                  "Open your doors to the public.",
             NodeType.Unlock,  1, 0,     1.0f, "",                Col.Casino,
-            new[]{ E(EffectType.UnlockNPCSpawning, 1f) }),
+            new[]{ E(EffectType.UnlockCasinoDoor, 1f) }),
 
         new("global_revenue",       "Global Revenue Multiplier",    "Increases all casino earnings.",
             NodeType.Upgrade, 5, 1000,  1.8f, "open_casino",     Col.Casino,
@@ -72,7 +72,7 @@ public static class UpgradeTreeSeeder
         // ── Machine Lines ─────────────────────────────────────────────────────
         new("unlock_slots",         "Unlock Slots",                 "Unlock the slot machine line.",
             NodeType.Unlock,  1, 500,   1.0f, "open_casino",         Col.MachineLine,
-            new[]{ E(EffectType.UnlockMachineLine, 1f, "SlotMachineLineData") }),
+            new[]{ E(EffectType.UnlockMachineLine, 1f, "SlotMachineLineData"), E(EffectType.UnlockNPCSpawning, 1f) }),
 
         new("unlock_roulette",      "Unlock Roulette",              "Unlock the roulette line.",
             NodeType.Unlock,  1, 2000,  1.0f, "unlock_slots",        Col.MachineLine,

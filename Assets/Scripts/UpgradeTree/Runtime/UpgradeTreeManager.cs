@@ -104,7 +104,11 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.UnlockNPCSpawning:
-                // TODO: NPCSpawner
+                NPCSpawner.Instance?.Activate();
+                break;
+
+            case EffectType.UnlockCasinoDoor:
+                // TODO: ouvrir la sprite de la porte du casino
                 break;
 
             default:

@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca58ebc2317a91041b91eae65b36e256, type: 3}
   m_Name: NPCData_Standard
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  isVIP: 0
   patienceTotal: 100
   baseBetAmount: 10
   basePatienceWinGain: 0.5
-  playInterval: 2
+  playInterval: 8
+  walkSpeed: 2
+  wanderRadius: 3
+  wanderPauseMin: 1
+  wanderPauseMax: 3

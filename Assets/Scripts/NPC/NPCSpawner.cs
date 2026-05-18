@@ -13,13 +13,29 @@ public class NPCSpawner : MonoBehaviour
     [Range(0f, 1f)]
     public float vipSpawnChance = 0.1f;
 
+    public static NPCSpawner Instance { get; private set; }
+
     private float _spawnTimer;
     private int _npcCount = 0;
+    private bool _active = false;
 
-    void Start() => _spawnTimer = GetSpawnInterval();
+    void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
+
+    public void Activate()
+    {
+        if (_active) return;
+        _active = true;
+        _spawnTimer = GetSpawnInterval();
+    }
 
     void Update()
     {
+        if (!_active) return;
+
         _spawnTimer -= Time.deltaTime;
         if (_spawnTimer <= 0f)
         {

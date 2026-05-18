@@ -14,6 +14,7 @@ public enum EffectType
     UnlockVIPReferral,
     UnlockAnalyticsBoard,
     UnlockCasinoExpansion,
+    UnlockCasinoDoor,
 
     // ── Machine Lines ──────────────────────────────────
     MachineLineAddMachines,

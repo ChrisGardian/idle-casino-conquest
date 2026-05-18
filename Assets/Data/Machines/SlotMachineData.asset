@@ -16,5 +16,5 @@ MonoBehaviour:
   payoutRate: 0.3
   winMultiplier: 2
   betAmountMultiplier: 0.7
-  sessionDuration: 8
+  sessionDuration: 20
   patienceWinGainMultiplier: 0.2
