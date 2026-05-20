@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BigSixWheelData
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   totalSlots: 4
-  payoutRate: 0.25
-  winMultiplier: 3.5
-  betAmountMultiplier: 0.6
+  payoutRate: 0.1
+  winMultiplier: 3
+  betAmountMultiplier: 5
   sessionDuration: 10
   patienceWinGainMultiplier: 0.4

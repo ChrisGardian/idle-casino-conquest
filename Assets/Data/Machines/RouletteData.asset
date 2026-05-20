@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RouletteData
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   totalSlots: 4
-  payoutRate: 0.45
+  payoutRate: 0.3
   winMultiplier: 2
-  betAmountMultiplier: 1.2
+  betAmountMultiplier: 1
   sessionDuration: 20
   patienceWinGainMultiplier: 0.25

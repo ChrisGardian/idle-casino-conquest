@@ -136,6 +136,7 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,     25,  1.0f, "open_casino",          800,   400,
             new[]{ E(EffectType.UnlockNPCColors, 1f) }),
 
+        // Devrait changer la mise de base des NPCs
         new("npc_base_gains",       "NPC Base Gains Multiplier",    "Multiplies earnings from regular NPCs.",
             NodeType.Upgrade, 5,     30,  1.9f, "open_casino",          800,  -400,
             new[]{ E(EffectType.NPCBaseGainsMultiplier, 0.1f) }),
