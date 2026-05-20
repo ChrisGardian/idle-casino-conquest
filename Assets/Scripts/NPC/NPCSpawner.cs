@@ -23,6 +23,25 @@ public class NPCSpawner : MonoBehaviour
     [Range(0f, 1f)]
     public float vipSpawnChance = 0.1f;
 
+    [Header("NPC Colors")]
+    public Color[] npcColorPalette;
+    public Color[] vipColorPalette;
+
+    private static readonly Color[] _defaultNpcColors = {
+        new Color(1f, 0.82f, 0.70f), // peau claire
+        new Color(0.87f, 0.65f, 0.47f), // peau dorée
+        new Color(0.60f, 0.40f, 0.27f), // peau foncée
+        new Color(0.70f, 0.85f, 1f),  // bleuté
+        new Color(0.85f, 1f, 0.75f),  // verdâtre
+        new Color(1f, 0.78f, 0.85f),  // rosé
+    };
+
+    private static readonly Color[] _defaultVipColors = {
+        new Color(1f, 0.88f, 0.40f),  // or
+        new Color(0.90f, 0.90f, 0.95f), // argent
+        new Color(0.95f, 0.80f, 0.60f), // champagne
+    };
+
     public static NPCSpawner Instance { get; private set; }
 
     private float _spawnTimer;
@@ -71,6 +90,10 @@ public class NPCSpawner : MonoBehaviour
         GameObject obj = Instantiate(prefab, spawnPos, Quaternion.identity, npcParent.transform);
         obj.name = spawnVIP ? $"VIP_{_npcCount++}" : $"NPC_{_npcCount++}";
         NPC npc = obj.GetComponent<NPC>();
+        Color[] palette = spawnVIP
+            ? (vipColorPalette?.Length > 0 ? vipColorPalette : _defaultVipColors)
+            : (npcColorPalette?.Length > 0 ? npcColorPalette : _defaultNpcColors);
+        npc.SetTint(palette[Random.Range(0, palette.Length)]);
         NPCManagementSystem.Instance.RegisterNPC(npc);
     }
 
@@ -87,4 +110,5 @@ public class NPCSpawner : MonoBehaviour
 
         return interval;
     }
+
 }

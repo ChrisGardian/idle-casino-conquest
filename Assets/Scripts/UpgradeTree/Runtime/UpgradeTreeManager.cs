@@ -8,6 +8,10 @@ public class UpgradeTreeManager : MonoBehaviour
 
     [SerializeField] private UpgradeTreeData _data;
 
+#if UNITY_EDITOR
+    [SerializeField] private bool _debugFreeUpgrades = true;
+#endif
+
     private readonly Dictionary<string, int> _nodeLevels = new();
 
     public int AvailableActionsCount { get; private set; }
@@ -36,6 +40,9 @@ public class UpgradeTreeManager : MonoBehaviour
 
     public float GetCost(UpgradeNodeDefinition node)
     {
+#if UNITY_EDITOR
+        if (_debugFreeUpgrades) return 0f;
+#endif
         int level = GetLevel(node.id);
         float cost = node.baseCost * Mathf.Pow(node.growthFactor, level);
         return Mathf.Round(cost * _data.globalCostMultiplier);
@@ -153,6 +160,27 @@ public class UpgradeTreeManager : MonoBehaviour
 
             case EffectType.MachineSessionDuration:
                 line?.AddBonusSessionDuration(effect.valuePerLevel);
+                break;
+
+            case EffectType.MachineLineSlotsPerMachine:
+                line?.AddBonusSlotsPerMachine((int)effect.valuePerLevel);
+                break;
+
+            case EffectType.VIPWalkSpeed:
+                GameModifiers.vipWalkSpeedBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.VIPPatience:
+                GameModifiers.vipPatienceBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.VIPBaseGainsMultiplier:
+                GameModifiers.vipBetMultiplierBonus += effect.valuePerLevel;
+                break;
+
+            // VIPReferralChance / UnlockVIPReferral : système de referral non implémenté
+            case EffectType.VIPReferralChance:
+            case EffectType.UnlockVIPReferral:
                 break;
 
             case EffectType.CasinoReputationMultiplier:

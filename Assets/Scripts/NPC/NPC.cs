@@ -38,6 +38,11 @@ public class NPC : MonoBehaviour
         _sr = GetComponentInChildren<SpriteRenderer>();
     }
 
+    public void SetTint(Color color)
+    {
+        if (_sr != null) _sr.color = color;
+    }
+
     void Start()
     {
         _spawnPosition = transform.position;

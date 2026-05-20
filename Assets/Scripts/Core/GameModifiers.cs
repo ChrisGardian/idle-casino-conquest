@@ -11,7 +11,7 @@ public static class GameModifiers
     public static float vipWalkSpeedBonus = 0f;
     public static float vipPatienceBonus = 0f;
     public static float vipBetMultiplierBonus = 0f;
-    public static float vipReferralChanceBonus = 0f;
+    // vipReferralChanceBonus : système de referral non implémenté
 
     // ── Global ────────────────────────────────────────────────────────────────
     public static float revenueMultiplier = 1f;
