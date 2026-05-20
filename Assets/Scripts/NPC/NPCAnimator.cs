@@ -45,7 +45,7 @@ public class NPCAnimator : MonoBehaviour
         Sprite[] target = _npc.State switch
         {
             NPCState.Walking => WalkFrames,
-            NPCState.Leaving => WalkFrames,
+            NPCState.Leaving => _npc.IsAtMachine ? PlayFrames : WalkFrames,
             NPCState.Playing => PlayFrames,
             _                => IdleFrames,
         };
