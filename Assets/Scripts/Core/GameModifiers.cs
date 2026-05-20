@@ -8,6 +8,10 @@ public static class GameModifiers
     public static float npcPatienceWinGainBonus = 0f;
     public static float npcArrivalIntervalBonus = 0f;
     public static float vipSpawnChanceBonus = 0f;
+    public static float vipWalkSpeedBonus = 0f;
+    public static float vipPatienceBonus = 0f;
+    public static float vipBetMultiplierBonus = 0f;
+    public static float vipReferralChanceBonus = 0f;
 
     // ── Global ────────────────────────────────────────────────────────────────
     public static float revenueMultiplier = 1f;

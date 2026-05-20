@@ -11,7 +11,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [Tooltip("Point où le NPC se place pour jouer. Si vide, utilise position machine - 0.6 en Y.")]
     [SerializeField] private Transform _standPoint;
 
-    public bool HasFreeSlot => _occupants.Count < data.totalSlots;
+    public bool HasFreeSlot => _occupants.Count < data.totalSlots + (Line != null ? Line.BonusSlotsPerMachine : 0);
     public float SessionDuration => data.sessionDuration + (Line != null ? Line.BonusSessionDuration : 0f);
     public IReadOnlyList<NPC> Occupants => _occupants;
     public float TotalRevenue => _totalRevenue;
