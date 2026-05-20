@@ -39,6 +39,12 @@ public class NPCManagementSystem : MonoBehaviour
 
     public void RegisterMachine(Machine machine) => _machines.Add(machine);
 
+    public void TryFillMachineSlots(Machine machine)
+    {
+        while (machine.HasFreeSlot && _idleNPCs.Count > 0)
+            TryAssignToMachine(_idleNPCs[0], machine);
+    }
+
     // Appelé par le Spawner
     public void RegisterNPC(NPC npc)
     {

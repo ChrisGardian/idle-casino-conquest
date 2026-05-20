@@ -37,7 +37,10 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             _spriteRenderer.color = locked ? LockedColor : Color.white;
 
         if (!locked && _hasStarted)
+        {
             NPCManagementSystem.Instance.RegisterMachine(this);
+            NPCManagementSystem.Instance.TryFillMachineSlots(this);
+        }
     }
 
     public Vector2 GetStandPosition() 
