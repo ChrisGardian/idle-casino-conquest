@@ -188,7 +188,7 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.UnlockCasinoDoor:
-                // TODO: ouvrir la sprite de la porte du casino
+                CasinoDoor.Instance?.Open();
                 break;
 
             default:
