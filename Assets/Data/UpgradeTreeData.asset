@@ -40,7 +40,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: -600, y: 300}
     effects:
-    - type: 27
+    - type: 28
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: casino_reputation
@@ -54,7 +54,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: -600, y: -300}
     effects:
-    - type: 28
+    - type: 29
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: analytics_board
@@ -169,7 +169,7 @@ MonoBehaviour:
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: 600}
     effects:
-    - type: 14
+    - type: 15
       valuePerLevel: 0.02
       targetLine: {fileID: 0}
   - id: ml_session_duration
@@ -183,33 +183,89 @@ MonoBehaviour:
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: 1100}
     effects:
-    - type: 15
+    - type: 16
       valuePerLevel: 2
       targetLine: {fileID: 0}
-  - id: ml_add_machines
-    displayName: Add Machines
-    description: Increases the max number of machines per line.
+  - id: add_slots_machine
+    displayName: Add Slot Machine
+    description: Add a machine to the Slots line.
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 150
+    baseCost: 100
     growthFactor: 2
     prerequisiteId: unlock_slots
-    treePosition: {x: 1200, y: 600}
+    treePosition: {x: -600, y: 500}
     effects:
     - type: 12
       valuePerLevel: 1
-      targetLine: {fileID: 0}
-  - id: ml_slots_per_machine
-    displayName: Slots per Machine
-    description: Adds an extra NPC slot per machine.
+      targetLine: {fileID: 11400000, guid: f47a05f8f86d20449b7c2149729411b7, type: 2}
+  - id: add_roulette_machine
+    displayName: Add Roulette Table
+    description: Add a machine to the Roulette line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 350
+    growthFactor: 2
+    prerequisiteId: unlock_roulette
+    treePosition: {x: -600, y: 1000}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 11400000, guid: 8f1f84e6c55c1fd49a8fe7914499c3cd, type: 2}
+  - id: add_blackjack_machine
+    displayName: Add Blackjack Table
+    description: Add a machine to the Blackjack line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 1200
+    growthFactor: 2
+    prerequisiteId: unlock_blackjack
+    treePosition: {x: -600, y: 1500}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 11400000, guid: 38e946bf654b81e44a74111eaecd3f53, type: 2}
+  - id: add_craps_machine
+    displayName: Add Craps Table
+    description: Add a machine to the Craps line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 4500
+    growthFactor: 2
+    prerequisiteId: unlock_craps
+    treePosition: {x: -600, y: 2000}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 11400000, guid: 32946a3c9579f62498b974aca305cd1a, type: 2}
+  - id: add_bigsixwheel_machine
+    displayName: Add Big Six Wheel
+    description: Add a machine to the Big Six Wheel line.
+    icon: {fileID: 0}
+    nodeType: 1
+    maxLevel: 5
+    baseCost: 15000
+    growthFactor: 2
+    prerequisiteId: unlock_bigsixwheel
+    treePosition: {x: -600, y: 2500}
+    effects:
+    - type: 12
+      valuePerLevel: 1
+      targetLine: {fileID: 11400000, guid: e9693b77f74d11a4aa5d15c0319997d3, type: 2}
+  - id: add_common_machine
+    displayName: Common Machine
+    description: Add one machine to every unlocked line. Costs more.
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 3
-    baseCost: 500
-    growthFactor: 2.2
-    prerequisiteId: ml_add_machines
-    treePosition: {x: 1200, y: 1100}
+    baseCost: 40000
+    growthFactor: 2.3
+    prerequisiteId: unlock_bigsixwheel
+    treePosition: {x: -1200, y: 2500}
     effects:
     - type: 13
       valuePerLevel: 1
@@ -220,7 +276,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 0
+    baseCost: 120
     growthFactor: 1
     prerequisiteId: unlock_slots
     treePosition: {x: 600, y: 1600}
@@ -234,7 +290,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 0
+    baseCost: 250
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
     treePosition: {x: 1200, y: 1600}
@@ -248,7 +304,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 0
     maxLevel: 1
-    baseCost: 0
+    baseCost: 800
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
     treePosition: {x: 1200, y: 2100}
@@ -267,7 +323,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 800, y: 200}
     effects:
-    - type: 17
+    - type: 18
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_arrival_interval
@@ -281,7 +337,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 800, y: 0}
     effects:
-    - type: 16
+    - type: 17
       valuePerLevel: -0.5
       targetLine: {fileID: 0}
   - id: npc_patience
@@ -295,7 +351,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 800, y: -200}
     effects:
-    - type: 18
+    - type: 19
       valuePerLevel: 2
       targetLine: {fileID: 0}
   - id: npc_colors
@@ -323,7 +379,7 @@ MonoBehaviour:
     prerequisiteId: open_casino
     treePosition: {x: 800, y: -400}
     effects:
-    - type: 19
+    - type: 20
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_satisfaction
@@ -337,7 +393,7 @@ MonoBehaviour:
     prerequisiteId: npc_patience
     treePosition: {x: 1500, y: -200}
     effects:
-    - type: 20
+    - type: 21
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: npc_departure_gain
@@ -351,7 +407,7 @@ MonoBehaviour:
     prerequisiteId: npc_satisfaction
     treePosition: {x: 2200, y: -200}
     effects:
-    - type: 21
+    - type: 22
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: unlock_vips
@@ -379,7 +435,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 2800, y: 200}
     effects:
-    - type: 22
+    - type: 23
       valuePerLevel: 0.02
       targetLine: {fileID: 0}
   - id: vip_walk_speed
@@ -393,7 +449,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 2800, y: -300}
     effects:
-    - type: 23
+    - type: 24
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: vip_patience
@@ -407,7 +463,7 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 2800, y: 0}
     effects:
-    - type: 24
+    - type: 25
       valuePerLevel: 3
       targetLine: {fileID: 0}
   - id: vip_base_gains
@@ -421,48 +477,6 @@ MonoBehaviour:
     prerequisiteId: unlock_vips
     treePosition: {x: 2800, y: 500}
     effects:
-    - type: 25
-      valuePerLevel: 0.15
-      targetLine: {fileID: 0}
-  - id: unlock_vip_referral
-    displayName: VIP Referral
-    description: A satisfied VIP temporarily boosts the next VIP spawn chance.
-    icon: {fileID: 0}
-    nodeType: 0
-    maxLevel: 1
-    baseCost: 1500
-    growthFactor: 1
-    prerequisiteId: vip_spawn_chance
-    treePosition: {x: 3400, y: 200}
-    effects:
-    - type: 8
-      valuePerLevel: 1
-      targetLine: {fileID: 0}
-  - id: vip_referral_chance
-    displayName: VIP Referral Chance
-    description: Increases the strength of the VIP referral bonus.
-    icon: {fileID: 0}
-    nodeType: 1
-    maxLevel: 5
-    baseCost: 1000
-    growthFactor: 1.9
-    prerequisiteId: unlock_vip_referral
-    treePosition: {x: 3400, y: 500}
-    effects:
     - type: 26
-      valuePerLevel: 0.05
-      targetLine: {fileID: 0}
-  - id: unlock_golden_vips
-    displayName: Unlock Golden VIPs
-    description: Enables Golden VIP NPCs to spawn.
-    icon: {fileID: 0}
-    nodeType: 0
-    maxLevel: 1
-    baseCost: 5000
-    growthFactor: 1
-    prerequisiteId: vip_base_gains
-    treePosition: {x: 3400, y: 700}
-    effects:
-    - type: 3
-      valuePerLevel: 1
+      valuePerLevel: 0.15
       targetLine: {fileID: 0}

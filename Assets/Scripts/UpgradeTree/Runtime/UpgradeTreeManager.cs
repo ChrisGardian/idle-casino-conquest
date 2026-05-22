@@ -102,6 +102,12 @@ public class UpgradeTreeManager : MonoBehaviour
                 line?.AddMachinesFromUpgrade((int)effect.valuePerLevel);
                 break;
 
+            case EffectType.MachineLineAddMachinesAll:
+                if (MachineLineManager.Instance != null)
+                    foreach (MachineLine l in MachineLineManager.Instance.Lines)
+                        if (l.IsUnlocked) l.AddMachinesFromUpgrade((int)effect.valuePerLevel);
+                break;
+
             case EffectType.MachinePayoutRate:
                 line?.AddBonusPayoutRate(effect.valuePerLevel);
                 break;
@@ -112,6 +118,10 @@ public class UpgradeTreeManager : MonoBehaviour
 
             case EffectType.UnlockNPCSpawning:
                 NPCSpawner.Instance?.Activate();
+                break;
+
+            case EffectType.UnlockNPCColors:
+                NPCSpawner.Instance?.UnlockNPCColors();
                 break;
 
             case EffectType.UnlockVIPs:
@@ -178,7 +188,7 @@ public class UpgradeTreeManager : MonoBehaviour
                 GameModifiers.vipBetMultiplierBonus += effect.valuePerLevel;
                 break;
 
-            // VIPReferralChance / UnlockVIPReferral : système de referral non implémenté
+            // VIPReferralChance / UnlockVIPReferral : système de referral non implémenté not for the Early Access
             case EffectType.VIPReferralChance:
             case EffectType.UnlockVIPReferral:
                 break;

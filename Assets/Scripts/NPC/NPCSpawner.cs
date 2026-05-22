@@ -35,8 +35,10 @@ public class NPCSpawner : MonoBehaviour
     private int _npcCount = 0;
     private bool _active = false;
     private bool _vipsUnlocked = false;
+    private bool _npcColorsUnlocked = false;
 
     public void UnlockVIPs() => _vipsUnlocked = true;
+    public void UnlockNPCColors() => _npcColorsUnlocked = true;
 
     void Awake()
     {
@@ -83,6 +85,7 @@ public class NPCSpawner : MonoBehaviour
 
     private Color GetRandomTint()
     {
+        if (!_npcColorsUnlocked) return Color.white;
         float h = Random.value;
         float s = Random.Range(tintSaturationMin, tintSaturationMax);
         float v = Random.Range(tintValueMin, tintValueMax);

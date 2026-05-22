@@ -18,6 +18,7 @@ public enum EffectType
 
     // ── Machine Lines ──────────────────────────────────
     MachineLineAddMachines,
+    MachineLineAddMachinesAll,
     MachineLineSlotsPerMachine,
     MachinePayoutRate,
     MachineSessionDuration,

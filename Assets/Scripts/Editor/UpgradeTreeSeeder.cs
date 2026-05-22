@@ -99,13 +99,31 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,     40,  1.7f, "unlock_slots",         600,  1100,
             new[]{ E(EffectType.MachineSessionDuration, 2f) }),
 
-        new("ml_add_machines",      "Add Machines",                 "Increases the max number of machines per line.",
-            NodeType.Upgrade, 5,    150,  2.0f, "unlock_slots",        1200,   600,
-            new[]{ E(EffectType.MachineLineAddMachines, 1f) }),
+        // Add Machine per line, branching haut-gauche
+        new("add_slots_machine",        "Add Slot Machine",         "Add a machine to the Slots line.",
+            NodeType.Upgrade, 5,    100,  2.0f, "unlock_slots",        -600,   500,
+            new[]{ E(EffectType.MachineLineAddMachines, 1f, "SlotMachineLineData") }),
 
-        new("ml_slots_per_machine", "Slots per Machine",            "Adds an extra NPC slot per machine.",
-            NodeType.Upgrade, 3,    500,  2.2f, "ml_add_machines",     1200,  1100,
-            new[]{ E(EffectType.MachineLineSlotsPerMachine, 1f) }),
+        new("add_roulette_machine",     "Add Roulette Table",       "Add a machine to the Roulette line.",
+            NodeType.Upgrade, 5,    350,  2.0f, "unlock_roulette",     -600,  1000,
+            new[]{ E(EffectType.MachineLineAddMachines, 1f, "RouletteLineData") }),
+
+        new("add_blackjack_machine",    "Add Blackjack Table",      "Add a machine to the Blackjack line.",
+            NodeType.Upgrade, 5,   1200,  2.0f, "unlock_blackjack",   -600,  1500,
+            new[]{ E(EffectType.MachineLineAddMachines, 1f, "BlackjackLineData") }),
+
+        new("add_craps_machine",        "Add Craps Table",          "Add a machine to the Craps line.",
+            NodeType.Upgrade, 5,   4500,  2.0f, "unlock_craps",       -600,  2000,
+            new[]{ E(EffectType.MachineLineAddMachines, 1f, "CrapsLineData") }),
+
+        new("add_bigsixwheel_machine",  "Add Big Six Wheel",        "Add a machine to the Big Six Wheel line.",
+            NodeType.Upgrade, 5,  15000,  2.0f, "unlock_bigsixwheel", -600,  2500,
+            new[]{ E(EffectType.MachineLineAddMachines, 1f, "BigSixWheelLineData") }),
+
+        // Common machines : débloquées après la dernière ligne, plus chères, ajoutent une machine à toutes les lignes
+        new("add_common_machine",       "Common Machine",           "Add one machine to every unlocked line. Costs more.",
+            NodeType.Upgrade, 3,  40000,  2.3f, "unlock_bigsixwheel", -1200, 2500,
+            new[]{ E(EffectType.MachineLineAddMachinesAll, 1f) }),
 
         new("unlock_ml_info_panel", "Machine Line Info Panel",      "Unlocks the info panel for each machine line.",
             NodeType.Unlock,  1,    120,  1.0f, "unlock_slots",         600,  1600,
@@ -170,17 +188,17 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,    400,  2.0f, "unlock_vips",         2800,   500,
             new[]{ E(EffectType.VIPBaseGainsMultiplier, 0.15f) }),
 
-        new("unlock_vip_referral",  "VIP Referral",                 "A satisfied VIP temporarily boosts the next VIP spawn chance.",
-            NodeType.Unlock,  1,   1500,  1.0f, "vip_spawn_chance",    3400,   200,
-            new[]{ E(EffectType.UnlockVIPReferral, 1f) }),
+        // new("unlock_vip_referral",  "VIP Referral",                 "A satisfied VIP temporarily boosts the next VIP spawn chance.",
+        //     NodeType.Unlock,  1,   1500,  1.0f, "vip_spawn_chance",    3400,   200,
+        //     new[]{ E(EffectType.UnlockVIPReferral, 1f) }),
 
-        new("vip_referral_chance",  "VIP Referral Chance",          "Increases the strength of the VIP referral bonus.",
-            NodeType.Upgrade, 5,   1000,  1.9f, "unlock_vip_referral", 3400,   500,
-            new[]{ E(EffectType.VIPReferralChance, 0.05f) }),
+        // new("vip_referral_chance",  "VIP Referral Chance",          "Increases the strength of the VIP referral bonus.",
+        //     NodeType.Upgrade, 5,   1000,  1.9f, "unlock_vip_referral", 3400,   500,
+        //     new[]{ E(EffectType.VIPReferralChance, 0.05f) }),
 
-        new("unlock_golden_vips",   "Unlock Golden VIPs",           "Enables Golden VIP NPCs to spawn.",
-            NodeType.Unlock,  1,   5000,  1.0f, "vip_base_gains",      3400,   700,
-            new[]{ E(EffectType.UnlockGoldenVIPs, 1f) }),
+        // new("unlock_golden_vips",   "Unlock Golden VIPs",           "Enables Golden VIP NPCs to spawn.",
+        //     NodeType.Unlock,  1,   5000,  1.0f, "vip_base_gains",      3400,   700,
+        //     new[]{ E(EffectType.UnlockGoldenVIPs, 1f) }),
     };
 
     [MenuItem("Casino/Generate Upgrade Tree")]
