@@ -30,7 +30,9 @@ public class NPC : MonoBehaviour
     private float _expectedWins = 0f;
     private float _sessionNetCasino = 0f;
 
-    private float BetAmount => data.baseBetAmount * (1f + GameModifiers.npcBetMultiplierBonus) * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
+    private float BetAmount => data.baseBetAmount
+        * (1f + GameModifiers.npcBetMultiplierBonus + (data.isVIP ? GameModifiers.vipBetMultiplierBonus : 0f))
+        * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
     private float PatienceWinGain => (data.basePatienceWinGain + GameModifiers.npcPatienceWinGainBonus) * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
 
     void Awake()
@@ -47,7 +49,7 @@ public class NPC : MonoBehaviour
     void Start()
     {
         _spawnPosition = transform.position;
-        _patienceTotal = data.patienceTotal + GameModifiers.npcPatienceBonus;
+        _patienceTotal = data.patienceTotal + GameModifiers.npcPatienceBonus + (data.isVIP ? GameModifiers.vipPatienceBonus : 0f);
         if (!_headingToMachine)
             PickWanderTarget();
     }
@@ -143,7 +145,7 @@ public class NPC : MonoBehaviour
         if (dist < 0.001f) return;
 
         MovingRight = dir.x > 0f;
-        float step = Mathf.Min((data.walkSpeed + GameModifiers.npcWalkSpeedBonus) * Time.deltaTime, dist);
+        float step = Mathf.Min((data.walkSpeed + GameModifiers.npcWalkSpeedBonus + (data.isVIP ? GameModifiers.vipWalkSpeedBonus : 0f)) * Time.deltaTime, dist);
         transform.position += new Vector3(dir.x / dist * step, dir.y / dist * step, 0f);
     }
 

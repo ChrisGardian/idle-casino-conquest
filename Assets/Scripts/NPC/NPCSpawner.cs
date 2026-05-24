@@ -19,6 +19,8 @@ public class NPCSpawner : MonoBehaviour
     public float crowdedIntervalMultiplier = 1.5f;
     [Tooltip("Multiplicateur d'intervalle quand toutes les places sont libres (< 1 = plus rapide)")]
     public float spaciousIntervalMultiplier = 0.75f;
+    [Tooltip("Intervalle minimum garanti entre deux spawns (sécurité anti-boucle infinie)")]
+    public float minSpawnInterval = 0.5f;
 
     [Range(0f, 1f)]
     public float vipSpawnChance = 0.1f;
@@ -103,7 +105,7 @@ public class NPCSpawner : MonoBehaviour
             interval *= Mathf.Lerp(crowdedIntervalMultiplier, spaciousIntervalMultiplier, freeRatio);
         }
 
-        return interval;
+        return Mathf.Max(minSpawnInterval, interval);
     }
 
 }

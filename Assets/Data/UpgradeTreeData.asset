@@ -338,7 +338,7 @@ MonoBehaviour:
     treePosition: {x: 800, y: 0}
     effects:
     - type: 17
-      valuePerLevel: -0.5
+      valuePerLevel: 0.5
       targetLine: {fileID: 0}
   - id: npc_patience
     displayName: NPC Patience

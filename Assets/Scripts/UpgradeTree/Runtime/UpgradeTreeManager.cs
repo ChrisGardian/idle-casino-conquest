@@ -109,7 +109,11 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.MachinePayoutRate:
-                line?.AddBonusPayoutRate(effect.valuePerLevel);
+                if (line != null)
+                    line.AddBonusPayoutRate(effect.valuePerLevel);
+                else if (MachineLineManager.Instance != null)
+                    foreach (MachineLine l in MachineLineManager.Instance.Lines)
+                        l.AddBonusPayoutRate(effect.valuePerLevel);
                 break;
 
             case EffectType.GlobalRevenueMultiplier:
@@ -169,7 +173,11 @@ public class UpgradeTreeManager : MonoBehaviour
                 break;
 
             case EffectType.MachineSessionDuration:
-                line?.AddBonusSessionDuration(effect.valuePerLevel);
+                if (line != null)
+                    line.AddBonusSessionDuration(effect.valuePerLevel);
+                else if (MachineLineManager.Instance != null)
+                    foreach (MachineLine l in MachineLineManager.Instance.Lines)
+                        l.AddBonusSessionDuration(effect.valuePerLevel);
                 break;
 
             case EffectType.MachineLineSlotsPerMachine:
@@ -186,6 +194,16 @@ public class UpgradeTreeManager : MonoBehaviour
 
             case EffectType.VIPBaseGainsMultiplier:
                 GameModifiers.vipBetMultiplierBonus += effect.valuePerLevel;
+                break;
+
+            case EffectType.UnlockAnalyticsBoard:
+                // TODO: GameUI.Instance?.UnlockAnalyticsBoard();
+                Debug.Log("UpgradeTreeManager: UnlockAnalyticsBoard – handler à brancher sur GameUI.");
+                break;
+
+            case EffectType.UnlockCasinoExpansion:
+                // TODO: CasinoExpansionManager.Instance?.Unlock();
+                Debug.Log("UpgradeTreeManager: UnlockCasinoExpansion – handler à brancher sur la scène 2.");
                 break;
 
             // VIPReferralChance / UnlockVIPReferral : système de referral non implémenté not for the Early Access

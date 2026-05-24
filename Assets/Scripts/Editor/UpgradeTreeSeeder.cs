@@ -143,8 +143,8 @@ public static class UpgradeTreeSeeder
             new[]{ E(EffectType.NPCWalkSpeed, 0.1f) }),
 
         new("npc_arrival_interval", "NPC Arrival Interval",         "Reduces time between NPC spawns.",
-            NodeType.Upgrade, 5,     20,  1.8f, "open_casino",          800,     0,
-            new[]{ E(EffectType.NPCArrivalInterval, -0.5f) }),
+            NodeType.Upgrade, 5,     50,  1.8f, "open_casino",          800,     0,
+            new[]{ E(EffectType.NPCArrivalInterval, 0.4f) }),
 
         new("npc_patience",         "NPC Patience",                 "NPCs wait longer before leaving.",
             NodeType.Upgrade, 5,     15,  1.7f, "open_casino",          800,  -200,
@@ -159,13 +159,13 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,     30,  1.9f, "open_casino",          800,  -400,
             new[]{ E(EffectType.NPCBaseGainsMultiplier, 0.1f) }),
 
-        new("npc_satisfaction",     "NPC Satisfaction Threshold",   "Satisfied NPCs stay longer.",
+        new("npc_satisfaction",     "NPC Satisfaction Threshold",   "NPCs contribute more to your reputation on departure, even when they lose often.",
             NodeType.Upgrade, 5,    100,  1.7f, "npc_patience",        1500,  -200,
             new[]{ E(EffectType.NPCSatisfactionThreshold, 0.05f) }),
 
-        new("npc_departure_gain",   "Departure Satisfaction Gain",  "Satisfied NPCs give more popularity on departure.",
+        new("npc_departure_gain",   "Departure Patience Bonus",     "NPCs gain more patience per win, letting them stay and play longer.",
             NodeType.Upgrade, 5,    300,  1.8f, "npc_satisfaction",    2200,  -200,
-            new[]{ E(EffectType.NPCDepartureSatisfactionGain, 0.1f) }),
+            new[]{ E(EffectType.NPCDepartureSatisfactionGain, 0.5f) }),
 
         // ── VIPs (DROITE LOIN) ────────────────────────────────────────────────
         new("unlock_vips",          "Unlock VIPs",                  "Enables VIP NPCs to spawn.",
