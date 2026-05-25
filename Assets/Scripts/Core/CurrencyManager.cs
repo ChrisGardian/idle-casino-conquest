@@ -36,6 +36,7 @@ public class CurrencyManager : MonoBehaviour
     {
         if (amount > 0f) amount *= GameModifiers.reputationMultiplier;
         popularity = Mathf.Max(1f, popularity + amount);
+        popularity = Mathf.Min(100f, popularity);
     }
 
     void OnApplicationQuit() => CasinoLogger.Close(money);
