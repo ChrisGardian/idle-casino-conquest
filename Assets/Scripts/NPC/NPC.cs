@@ -192,21 +192,19 @@ public class NPC : MonoBehaviour
         _totalPlays++;
         _expectedWins += _assignedMachine.GetFairPayoutRate();
 
+        // Net réel du casino : positif si le NPC perd, négatif si le NPC gagne
+        // bet*(1 - winMultiplier) sur victoire NPC, bet sur défaite NPC — scalé par revenueMultiplier
         float casinoNet = win
             ? bet * (1f - _assignedMachine.data.winMultiplier) * GameModifiers.revenueMultiplier
             : bet * GameModifiers.revenueMultiplier;
         _sessionNetCasino += casinoNet;
+        CurrencyManager.Instance.AddMoney(casinoNet);
 
         if (win)
         {
             _actualWins++;
             _patienceTotal += PatienceWinGain;
-            CurrencyManager.Instance.AddMoney(-amount);
             if (_animator != null) _animator.TriggerWin();
-        }
-        else
-        {
-            CurrencyManager.Instance.AddMoney(amount);
         }
 
         CasinoLogger.LogTransaction(gameObject.name, _assignedMachine.name, _assignedMachine.Line?.name ?? "?", bet, win, amount, casinoNet);
