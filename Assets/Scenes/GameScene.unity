@@ -18347,6 +18347,7 @@ GameObject:
   - component: {fileID: 1570811299}
   - component: {fileID: 1570811298}
   - component: {fileID: 1570811300}
+  - component: {fileID: 1570811301}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18397,6 +18398,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCManagementSystem
   popularityModifier: 1
   _wanderBoundsCollider: {fileID: 1480349078}
+--- !u!114 &1570811301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570811297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40962e656853684c9a01b5236ffcf50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingTextSpawner
+  _prefab: {fileID: 7285899252621257712, guid: b35ccdb2dbd5e054996309655bebc5e2, type: 3}
+  _yOffset: 0.8
 --- !u!1 &1634091400
 GameObject:
   m_ObjectHideFlags: 0
@@ -18435,6 +18450,7 @@ MonoBehaviour:
   popularityExponent: 0.5
   crowdedIntervalMultiplier: 1.5
   spaciousIntervalMultiplier: 0.75
+  minSpawnInterval: 0.5
   vipSpawnChance: 0.05
   tintSaturationMin: 0.25
   tintSaturationMax: 0.55

@@ -200,6 +200,12 @@ public class NPC : MonoBehaviour
         _sessionNetCasino += casinoNet;
         CurrencyManager.Instance.AddMoney(casinoNet);
 
+        // Texte flottant à chaque mise (vert = casino gagne, rouge = casino perd)
+        if (FloatingTextSpawner.Instance == null)
+            Debug.LogWarning("[FloatingText] FloatingTextSpawner introuvable en scène !");
+        else
+            FloatingTextSpawner.Instance.Spawn(transform.position, casinoNet);
+
         if (win)
         {
             _actualWins++;
@@ -213,6 +219,7 @@ public class NPC : MonoBehaviour
     private void LeaveMachine()
     {
         CasinoLogger.LogSessionSummary(gameObject.name, _assignedMachine.name, _assignedMachine.Line?.name ?? "?", _totalPlays, _actualWins, _sessionNetCasino);
+
         _assignedMachine.FreeSlot(this);
         _assignedMachine = null;
 
