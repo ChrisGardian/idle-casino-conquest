@@ -24,7 +24,7 @@ MonoBehaviour:
     baseCost: 0
     growthFactor: 1
     prerequisiteId: 
-    treePosition: {x: 0, y: 0}
+    treePosition: {x: -250, y: -500}
     effects:
     - type: 11
       valuePerLevel: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     baseCost: 50
     growthFactor: 1.8
     prerequisiteId: open_casino
-    treePosition: {x: -600, y: 300}
+    treePosition: {x: -700, y: -275}
     effects:
     - type: 28
       valuePerLevel: 0.1
@@ -52,7 +52,7 @@ MonoBehaviour:
     baseCost: 40
     growthFactor: 1.7
     prerequisiteId: open_casino
-    treePosition: {x: -600, y: -300}
+    treePosition: {x: -700, y: -725}
     effects:
     - type: 29
       valuePerLevel: 0.05
@@ -66,7 +66,7 @@ MonoBehaviour:
     baseCost: 100
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: -1200, y: 0}
+    treePosition: {x: -1150, y: -500}
     effects:
     - type: 9
       valuePerLevel: 1
@@ -80,7 +80,7 @@ MonoBehaviour:
     baseCost: 5000
     growthFactor: 1
     prerequisiteId: global_revenue
-    treePosition: {x: -1800, y: 300}
+    treePosition: {x: -1600, y: -275}
     effects:
     - type: 10
       valuePerLevel: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
     baseCost: 10
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: 0, y: 500}
+    treePosition: {x: -250, y: -125}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
     baseCost: 200
     growthFactor: 1
     prerequisiteId: unlock_slots
-    treePosition: {x: 0, y: 1000}
+    treePosition: {x: -250, y: 250}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
     baseCost: 800
     growthFactor: 1
     prerequisiteId: unlock_roulette
-    treePosition: {x: 0, y: 1500}
+    treePosition: {x: -250, y: 625}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
     baseCost: 3000
     growthFactor: 1
     prerequisiteId: unlock_blackjack
-    treePosition: {x: 0, y: 2000}
+    treePosition: {x: -250, y: 1000}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     baseCost: 10000
     growthFactor: 1
     prerequisiteId: unlock_craps
-    treePosition: {x: 0, y: 2500}
+    treePosition: {x: -250, y: 1375}
     effects:
     - type: 1
       valuePerLevel: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
     baseCost: 50
     growthFactor: 1.9
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: 600}
+    treePosition: {x: 200, y: -50}
     effects:
     - type: 15
       valuePerLevel: 0.02
@@ -181,7 +181,7 @@ MonoBehaviour:
     baseCost: 40
     growthFactor: 1.7
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: 1100}
+    treePosition: {x: 200, y: 325}
     effects:
     - type: 16
       valuePerLevel: 2
@@ -195,7 +195,7 @@ MonoBehaviour:
     baseCost: 100
     growthFactor: 2
     prerequisiteId: unlock_slots
-    treePosition: {x: -600, y: 500}
+    treePosition: {x: -700, y: -125}
     effects:
     - type: 12
       valuePerLevel: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
     baseCost: 350
     growthFactor: 2
     prerequisiteId: unlock_roulette
-    treePosition: {x: -600, y: 1000}
+    treePosition: {x: -700, y: 250}
     effects:
     - type: 12
       valuePerLevel: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
     baseCost: 1200
     growthFactor: 2
     prerequisiteId: unlock_blackjack
-    treePosition: {x: -600, y: 1500}
+    treePosition: {x: -700, y: 625}
     effects:
     - type: 12
       valuePerLevel: 1
@@ -237,7 +237,7 @@ MonoBehaviour:
     baseCost: 4500
     growthFactor: 2
     prerequisiteId: unlock_craps
-    treePosition: {x: -600, y: 2000}
+    treePosition: {x: -700, y: 1000}
     effects:
     - type: 12
       valuePerLevel: 1
@@ -251,7 +251,7 @@ MonoBehaviour:
     baseCost: 15000
     growthFactor: 2
     prerequisiteId: unlock_bigsixwheel
-    treePosition: {x: -600, y: 2500}
+    treePosition: {x: -700, y: 1375}
     effects:
     - type: 12
       valuePerLevel: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
     baseCost: 40000
     growthFactor: 2.3
     prerequisiteId: unlock_bigsixwheel
-    treePosition: {x: -1200, y: 2500}
+    treePosition: {x: -1150, y: 1375}
     effects:
     - type: 13
       valuePerLevel: 1
@@ -279,7 +279,7 @@ MonoBehaviour:
     baseCost: 120
     growthFactor: 1
     prerequisiteId: unlock_slots
-    treePosition: {x: 600, y: 1600}
+    treePosition: {x: 200, y: 700}
     effects:
     - type: 5
       valuePerLevel: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
     baseCost: 250
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
-    treePosition: {x: 1200, y: 1600}
+    treePosition: {x: 650, y: 700}
     effects:
     - type: 6
       valuePerLevel: 1
@@ -307,7 +307,7 @@ MonoBehaviour:
     baseCost: 800
     growthFactor: 1
     prerequisiteId: unlock_ml_info_panel
-    treePosition: {x: 1200, y: 2100}
+    treePosition: {x: 650, y: 1075}
     effects:
     - type: 7
       valuePerLevel: 1
@@ -321,7 +321,7 @@ MonoBehaviour:
     baseCost: 20
     growthFactor: 1.6
     prerequisiteId: open_casino
-    treePosition: {x: 800, y: 200}
+    treePosition: {x: 350, y: -350}
     effects:
     - type: 18
       valuePerLevel: 0.1
@@ -332,13 +332,13 @@ MonoBehaviour:
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
-    baseCost: 20
+    baseCost: 50
     growthFactor: 1.8
     prerequisiteId: open_casino
-    treePosition: {x: 800, y: 0}
+    treePosition: {x: 350, y: -500}
     effects:
     - type: 17
-      valuePerLevel: 0.5
+      valuePerLevel: 0.4
       targetLine: {fileID: 0}
   - id: npc_patience
     displayName: NPC Patience
@@ -349,7 +349,7 @@ MonoBehaviour:
     baseCost: 15
     growthFactor: 1.7
     prerequisiteId: open_casino
-    treePosition: {x: 800, y: -200}
+    treePosition: {x: 350, y: -650}
     effects:
     - type: 19
       valuePerLevel: 2
@@ -363,7 +363,7 @@ MonoBehaviour:
     baseCost: 25
     growthFactor: 1
     prerequisiteId: open_casino
-    treePosition: {x: 800, y: 400}
+    treePosition: {x: 350, y: -200}
     effects:
     - type: 4
       valuePerLevel: 1
@@ -377,38 +377,39 @@ MonoBehaviour:
     baseCost: 30
     growthFactor: 1.9
     prerequisiteId: open_casino
-    treePosition: {x: 800, y: -400}
+    treePosition: {x: 350, y: -800}
     effects:
     - type: 20
       valuePerLevel: 0.1
       targetLine: {fileID: 0}
   - id: npc_satisfaction
     displayName: NPC Satisfaction Threshold
-    description: Satisfied NPCs stay longer.
+    description: NPCs contribute more to your reputation on departure, even when
+      they lose often.
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
     baseCost: 100
     growthFactor: 1.7
     prerequisiteId: npc_patience
-    treePosition: {x: 1500, y: -200}
+    treePosition: {x: 875, y: -650}
     effects:
     - type: 21
       valuePerLevel: 0.05
       targetLine: {fileID: 0}
   - id: npc_departure_gain
-    displayName: Departure Satisfaction Gain
-    description: Satisfied NPCs give more popularity on departure.
+    displayName: Departure Patience Bonus
+    description: NPCs gain more patience per win, letting them stay and play longer.
     icon: {fileID: 0}
     nodeType: 1
     maxLevel: 5
     baseCost: 300
     growthFactor: 1.8
     prerequisiteId: npc_satisfaction
-    treePosition: {x: 2200, y: -200}
+    treePosition: {x: 1400, y: -650}
     effects:
     - type: 22
-      valuePerLevel: 0.1
+      valuePerLevel: 0.5
       targetLine: {fileID: 0}
   - id: unlock_vips
     displayName: Unlock VIPs
@@ -419,7 +420,7 @@ MonoBehaviour:
     baseCost: 500
     growthFactor: 1
     prerequisiteId: npc_arrival_interval
-    treePosition: {x: 2200, y: 0}
+    treePosition: {x: 1400, y: -500}
     effects:
     - type: 2
       valuePerLevel: 1
@@ -433,7 +434,7 @@ MonoBehaviour:
     baseCost: 300
     growthFactor: 1.9
     prerequisiteId: unlock_vips
-    treePosition: {x: 2800, y: 200}
+    treePosition: {x: 1850, y: -350}
     effects:
     - type: 23
       valuePerLevel: 0.02
@@ -447,7 +448,7 @@ MonoBehaviour:
     baseCost: 200
     growthFactor: 1.6
     prerequisiteId: unlock_vips
-    treePosition: {x: 2800, y: -300}
+    treePosition: {x: 1850, y: -725}
     effects:
     - type: 24
       valuePerLevel: 0.1
@@ -461,7 +462,7 @@ MonoBehaviour:
     baseCost: 250
     growthFactor: 1.7
     prerequisiteId: unlock_vips
-    treePosition: {x: 2800, y: 0}
+    treePosition: {x: 1850, y: -500}
     effects:
     - type: 25
       valuePerLevel: 3
@@ -475,7 +476,7 @@ MonoBehaviour:
     baseCost: 400
     growthFactor: 2
     prerequisiteId: unlock_vips
-    treePosition: {x: 2800, y: 500}
+    treePosition: {x: 1850, y: -125}
     effects:
     - type: 26
       valuePerLevel: 0.15

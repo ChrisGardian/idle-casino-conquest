@@ -43,6 +43,9 @@ public static class UpgradeTreeSeeder
         }
     }
 
+    private const float PositionScale = 0.75f;
+    private static readonly Vector2 PositionOffset = new(-250f, -500f);
+
     // Layout: Casino ← (gauche) | Machines ↑ (haut) | NPCs → (droite) | VIPs →→ (droite loin)
     private static readonly List<NodeSeed> Seeds = new()
     {
@@ -243,7 +246,7 @@ public static class UpgradeTreeSeeder
                 baseCost       = seed.BaseCost,
                 growthFactor   = seed.GrowthFactor,
                 prerequisiteId = seed.PrerequisiteId,
-                treePosition   = new Vector2(seed.PosX, seed.PosY),
+                treePosition   = new Vector2(seed.PosX, seed.PosY) * PositionScale + PositionOffset,
                 effects        = effects,
             };
 
