@@ -72,8 +72,7 @@ public class NPCManagementSystem : MonoBehaviour
     public void OnNPCLeaving(NPC npc)
     {
         float satisfaction = Mathf.Clamp01(npc.ComputeSatisfaction() + GameModifiers.npcSatisfactionThresholdBonus);
-        float currentPopularity = CurrencyManager.Instance.popularity;
-        float popularityDelta = currentPopularity * Mathf.Lerp(-popularityModifier, popularityModifier, satisfaction);
+        float popularityDelta = Mathf.Lerp(-popularityModifier, popularityModifier, satisfaction);
         CurrencyManager.Instance.AddPopularity(popularityDelta);
 
         _allNPCs.Remove(npc);
