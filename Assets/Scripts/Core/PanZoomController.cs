@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PanZoomController : MonoBehaviour
 {
@@ -98,6 +101,8 @@ public class PanZoomController : MonoBehaviour
 
         if (mouse.leftButton.wasPressedThisFrame)
         {
+            if (IsPointerOverInteractableUI()) return;
+
             _dragOriginWorld = _cam.ScreenToWorldPoint(mouse.position.ReadValue());
             _isDragging = true;
         }
@@ -174,6 +179,7 @@ public class PanZoomController : MonoBehaviour
 
         float scroll = mouse.scroll.ReadValue().y;
         if (Mathf.Approximately(scroll, 0f)) return;
+        if (IsPointerOverInteractableUI()) return;
 
         _cam.orthographicSize = Mathf.Clamp(
             _cam.orthographicSize - scroll * _zoomSpeed * Time.deltaTime,
@@ -217,5 +223,24 @@ public class PanZoomController : MonoBehaviour
         target.y = Mathf.Clamp(target.y, _bounds.min.y + halfH, _bounds.max.y - halfH);
 
         return target;
+    }
+
+    private bool IsPointerOverInteractableUI()
+    {
+        if (EventSystem.current == null) return false;
+
+        var pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (var result in results)
+            if (result.gameObject.GetComponentInParent<Selectable>() != null)
+                return true;
+
+        return false;
     }
 }
