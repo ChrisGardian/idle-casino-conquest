@@ -24,6 +24,10 @@ public class PanZoomController : MonoBehaviour
     [SerializeField] private BoxCollider2D _boundsCollider;
     [SerializeField] private bool _useBounds = false;
 
+    [Header("State Persistence")]
+    [Tooltip("If set, camera position and zoom are saved/restored via PlayerPrefs under this key.")]
+    [SerializeField] private string _saveKey = "";
+
     private Camera _cam;
     private bool _isDragging;
     private Vector3 _dragOriginWorld;
@@ -39,9 +43,40 @@ public class PanZoomController : MonoBehaviour
             _useBounds = false;
     }
 
+    void Start()
+    {
+        if (!string.IsNullOrEmpty(_saveKey))
+            LoadCameraState();
+    }
+
+    void OnDestroy()
+    {
+        if (!string.IsNullOrEmpty(_saveKey))
+            SaveCameraState();
+    }
+
     void OnDisable()
     {
         _isDragging = false;
+    }
+
+    private void SaveCameraState()
+    {
+        PlayerPrefs.SetFloat(_saveKey + "_PosX", transform.position.x);
+        PlayerPrefs.SetFloat(_saveKey + "_PosY", transform.position.y);
+        PlayerPrefs.SetFloat(_saveKey + "_Zoom", _cam.orthographicSize);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadCameraState()
+    {
+        if (!PlayerPrefs.HasKey(_saveKey + "_PosX")) return;
+
+        Vector3 pos = transform.position;
+        pos.x = PlayerPrefs.GetFloat(_saveKey + "_PosX");
+        pos.y = PlayerPrefs.GetFloat(_saveKey + "_PosY");
+        transform.position = pos;
+        _cam.orthographicSize = PlayerPrefs.GetFloat(_saveKey + "_Zoom");
     }
 
     void Update()
