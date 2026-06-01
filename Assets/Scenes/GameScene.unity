@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTreeManager
   _data: {fileID: 11400000, guid: 8cdc277d1d0368244918f88bea743c21, type: 2}
-  _debugFreeUpgrades: 1
+  _debugFreeUpgrades: 0
 --- !u!1 &270197487
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,6 +3500,7 @@ MonoBehaviour:
   _maxZoom: 11
   _boundsCollider: {fileID: 551535648}
   _useBounds: 1
+  _saveKey: 
 --- !u!1 &551535646
 GameObject:
   m_ObjectHideFlags: 0

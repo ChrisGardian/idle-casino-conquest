@@ -9,7 +9,7 @@ public class UpgradeTreeManager : MonoBehaviour
     [SerializeField] private UpgradeTreeData _data;
 
 #if UNITY_EDITOR
-    [SerializeField] private bool _debugFreeUpgrades = true;
+    [SerializeField] private bool _debugFreeUpgrades = false;
 #endif
 
     private readonly Dictionary<string, int> _nodeLevels = new();

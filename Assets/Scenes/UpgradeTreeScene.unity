@@ -152,6 +152,7 @@ MonoBehaviour:
   _nodePrefab: {fileID: 257738780556303284, guid: ec442a385ab28384292029d53df3f306, type: 3}
   _nodesContainer: {fileID: 1243641832}
   _connectionLinePrefab: {fileID: 6265206782729245579, guid: f3c3465259741254b8cf06299bd9a3b0, type: 3}
+  _refreshInterval: 0.5
 --- !u!4 &452321516
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTreeManager
   _data: {fileID: 11400000, guid: 8cdc277d1d0368244918f88bea743c21, type: 2}
-  _debugFreeUpgrades: 1
+  _debugFreeUpgrades: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
