@@ -11,11 +11,7 @@ public class UpgradeTreeUI : MonoBehaviour
     [SerializeField] private Transform _nodesContainer;
     [SerializeField] private LineRenderer _connectionLinePrefab;
 
-    [Header("Auto Refresh")]
-    [SerializeField] private float _refreshInterval = 0.5f;
-
     private readonly Dictionary<string, UpgradeNodeUI> _nodeUIs = new();
-    private float _refreshTimer;
 
     void Awake()
     {
@@ -26,16 +22,13 @@ public class UpgradeTreeUI : MonoBehaviour
     {
         SpawnNodes();
         SpawnConnections();
+        UpgradeTreeManager.Instance.OnRefresh += RefreshAll;
     }
 
-    void Update()
+    void OnDestroy()
     {
-        _refreshTimer -= Time.deltaTime;
-        if (_refreshTimer <= 0f)
-        {
-            RefreshAll();
-            _refreshTimer = _refreshInterval;
-        }
+        if (UpgradeTreeManager.Instance != null)
+            UpgradeTreeManager.Instance.OnRefresh -= RefreshAll;
     }
 
     // ── Spawn ─────────────────────────────────────────────────────────────────

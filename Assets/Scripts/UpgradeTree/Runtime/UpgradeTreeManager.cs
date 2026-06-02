@@ -16,6 +16,12 @@ public class UpgradeTreeManager : MonoBehaviour
 
     public int AvailableActionsCount { get; private set; }
 
+    public event Action OnRefresh;
+    public event Action<int> OnAvailableCountChanged;
+
+    private float _refreshTimer;
+    private const float RefreshInterval = 0.5f;
+
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
@@ -26,6 +32,17 @@ public class UpgradeTreeManager : MonoBehaviour
     void Start()
     {
         RecalculateAvailableCount();
+    }
+
+    void Update()
+    {
+        _refreshTimer -= Time.deltaTime;
+        if (_refreshTimer <= 0f)
+        {
+            RecalculateAvailableCount();
+            OnRefresh?.Invoke();
+            _refreshTimer = RefreshInterval;
+        }
     }
 
     // ── Queries ───────────────────────────────────────────────────────────────
@@ -233,6 +250,8 @@ public class UpgradeTreeManager : MonoBehaviour
         {
             if (CanAct(node.id)) count++;
         }
+        if (count == AvailableActionsCount) return;
         AvailableActionsCount = count;
+        OnAvailableCountChanged?.Invoke(count);
     }
 }
