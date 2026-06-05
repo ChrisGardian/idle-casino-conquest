@@ -31,7 +31,7 @@ public class NPC : MonoBehaviour
     private float _sessionNetCasino = 0f;
 
     private float BetAmount => data.baseBetAmount
-        * (1f + GameModifiers.npcBetMultiplierBonus + (data.isVIP ? GameModifiers.vipBetMultiplierBonus : 0f))
+        * (1f + (data.isVIP ? GameModifiers.vipBetMultiplierBonus : GameModifiers.npcBetMultiplierBonus))
         * (_assignedMachine != null ? _assignedMachine.data.betAmountMultiplier : 1f);
     private float PatienceWinGain => (data.basePatienceWinGain + GameModifiers.npcPatienceWinGainBonus) * (_assignedMachine != null ? _assignedMachine.data.patienceWinGainMultiplier : 1f);
 
