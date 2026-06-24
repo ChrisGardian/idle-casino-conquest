@@ -1,6 +1,6 @@
 public static class GameModifiers
 {
-    // ── NPC ───────────────────────────────────────────────────────────────────
+    // NPC
     public static float npcWalkSpeedBonus = 0f;
     public static float npcPatienceBonus = 0f;
     public static float npcBetMultiplierBonus = 0f;
@@ -11,9 +11,9 @@ public static class GameModifiers
     public static float vipWalkSpeedBonus = 0f;
     public static float vipPatienceBonus = 0f;
     public static float vipBetMultiplierBonus = 0f;
-    // vipReferralChanceBonus : système de referral non implémenté
+    // vipReferralChanceBonus: referral system not implemented yet
 
-    // ── Global ────────────────────────────────────────────────────────────────
+    // Global
     public static float revenueMultiplier = 1f;
     public static float reputationMultiplier = 1f;
 }
