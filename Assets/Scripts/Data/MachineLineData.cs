@@ -11,12 +11,12 @@ public class MachineLineData : ScriptableObject
     public float unlockCost;
 
     [Header("Upgrades")]
-    [Tooltip("Coût de chaque niveau d'upgrade (index 0 = passage au niveau 1, etc.)")]
+    [Tooltip("Cost of each upgrade level (index 0 = upgrade to level 1, etc.)")]
     public float[] upgradeCosts;
 
-    [Tooltip("Nombre max de machines autorisées par niveau (index 0 = niveau 0, etc.)")]
+    [Tooltip("Max machines allowed per level (index 0 = level 0, etc.)")]
     public int[] maxMachinesPerLevel;
 
-    [Tooltip("Bonus de revenue appliqué à toutes les machines de la ligne par niveau")]
+    [Tooltip("Revenue bonus applied to all machines on this line per level")]
     public float[] revenueMultiplierPerLevel;
 }

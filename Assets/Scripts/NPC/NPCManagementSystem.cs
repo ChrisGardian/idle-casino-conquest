@@ -45,7 +45,6 @@ public class NPCManagementSystem : MonoBehaviour
             TryAssignToMachine(_idleNPCs[0], machine);
     }
 
-    // Appelé par le Spawner
     public void RegisterNPC(NPC npc)
     {
         _allNPCs.Add(npc);
@@ -53,7 +52,6 @@ public class NPCManagementSystem : MonoBehaviour
         TryAssignNPC(npc);
     }
 
-    // Appelé par Machine.FreeSlot()
     public void OnMachineSlotFreed(Machine machine)
     {
         if (_idleNPCs.Count == 0) return;
@@ -61,14 +59,12 @@ public class NPCManagementSystem : MonoBehaviour
         TryAssignToMachine(npc, machine);
     }
 
-    // Appelé par NPC quand il redevient Idle après une session
     public void OnNPCBecameIdle(NPC npc)
     {
         _idleNPCs.Add(npc);
         TryAssignNPC(npc);
     }
 
-    // Appelé quand patienceTotal = 0 et machine libérée (ou pas de machine)
     public void OnNPCLeaving(NPC npc)
     {
         float satisfaction = Mathf.Clamp01(npc.ComputeSatisfaction() + GameModifiers.npcSatisfactionThresholdBonus);
@@ -97,7 +93,7 @@ public class NPCManagementSystem : MonoBehaviour
                 return;
             }
         }
-        // Aucune machine dispo → NPC reste Idle, partira avec satisfaction = 0
+        // No machine available -> NPC stays Idle and will leave with satisfaction = 0
     }
 
     private void TryAssignToMachine(NPC npc, Machine machine)

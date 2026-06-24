@@ -45,7 +45,7 @@ public class UpgradeTreeManager : MonoBehaviour
         }
     }
 
-    // ── Queries ───────────────────────────────────────────────────────────────
+    // Queries
 
     public int GetLevel(string nodeId) =>
         _nodeLevels.TryGetValue(nodeId, out int level) ? level : 0;
@@ -82,7 +82,7 @@ public class UpgradeTreeManager : MonoBehaviour
         return CurrencyManager.Instance.money >= GetCost(node);
     }
 
-    // ── Action ────────────────────────────────────────────────────────────────
+    // Action
 
     public bool TryAct(string nodeId)
     {
@@ -100,7 +100,7 @@ public class UpgradeTreeManager : MonoBehaviour
         return true;
     }
 
-    // ── Effects ───────────────────────────────────────────────────────────────
+    // Effects
 
     private void ApplyEffect(UpgradeEffect effect, int newLevel)
     {
@@ -215,15 +215,15 @@ public class UpgradeTreeManager : MonoBehaviour
 
             case EffectType.UnlockAnalyticsBoard:
                 // TODO: GameUI.Instance?.UnlockAnalyticsBoard();
-                Debug.Log("UpgradeTreeManager: UnlockAnalyticsBoard – handler à brancher sur GameUI.");
+                Debug.Log("UpgradeTreeManager: UnlockAnalyticsBoard handler not yet wired up.");
                 break;
 
             case EffectType.UnlockCasinoExpansion:
                 // TODO: CasinoExpansionManager.Instance?.Unlock();
-                Debug.Log("UpgradeTreeManager: UnlockCasinoExpansion – handler à brancher sur la scène 2.");
+                Debug.Log("UpgradeTreeManager: UnlockCasinoExpansion handler not yet wired up.");
                 break;
 
-            // VIPReferralChance / UnlockVIPReferral : système de referral non implémenté not for the Early Access
+            // VIPReferralChance / UnlockVIPReferral: referral system not implemented yet
             case EffectType.VIPReferralChance:
             case EffectType.UnlockVIPReferral:
                 break;
@@ -241,7 +241,7 @@ public class UpgradeTreeManager : MonoBehaviour
         }
     }
 
-    // ── Badge ─────────────────────────────────────────────────────────────────
+    // Badge
 
     private void RecalculateAvailableCount()
     {

@@ -46,15 +46,14 @@ public static class UpgradeTreeSeeder
     private const float PositionScale = 0.75f;
     private static readonly Vector2 PositionOffset = new(-250f, -500f);
 
-    // Layout: Casino ← (gauche) | Machines ↑ (haut) | NPCs → (droite) | VIPs →→ (droite loin)
+    // Layout: Casino <- (left) | Machines ^ (up) | NPCs -> (right) | VIPs --> (far right)
     private static readonly List<NodeSeed> Seeds = new()
     {
-        // ── Base ──────────────────────────────────────────────────────────────
         new("open_casino",          "Open Casino",                  "Open your doors to the public.",
             NodeType.Unlock,  1,      0,   1.0f, "",                       0,      0,
             new[]{ E(EffectType.UnlockCasinoDoor, 1f) }),
 
-        // ── Casino général (GAUCHE) ────────────────────────────────────────────
+        // General Casino (LEFT)
         new("global_revenue",       "Global Revenue Multiplier",    "Increases all casino earnings.",
             NodeType.Upgrade, 5,     50,  1.8f, "open_casino",          -600,   300,
             new[]{ E(EffectType.GlobalRevenueMultiplier, 0.1f) }),
@@ -71,8 +70,7 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,   5000,  1.0f, "global_revenue",      -1800,   300,
             new[]{ E(EffectType.UnlockCasinoExpansion, 1f) }),
 
-        // ── Machine Lines (HAUT) ──────────────────────────────────────────────
-        // Chaîne de déblocage, axe central vertical
+        // Machine Lines (UP)
         new("unlock_slots",         "Unlock Slots",                 "Unlock the slot machine line.",
             NodeType.Unlock,  1,     10,  1.0f, "open_casino",            0,   500,
             new[]{ E(EffectType.UnlockMachineLine, 1f, "SlotMachineLineData"), E(EffectType.UnlockNPCSpawning, 1f) }),
@@ -93,7 +91,6 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,  10000,  1.0f, "unlock_craps",           0,  2500,
             new[]{ E(EffectType.UnlockMachineLine, 1f, "BigSixWheelLineData") }),
 
-        // Upgrades de machines, branching haut-droite
         new("ml_payout_rate",       "Payout Rate",                  "Increases the base payout rate of machines.",
             NodeType.Upgrade, 5,     50,  1.9f, "unlock_slots",         600,   600,
             new[]{ E(EffectType.MachinePayoutRate, 0.02f) }),
@@ -102,7 +99,7 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,     40,  1.7f, "unlock_slots",         600,  1100,
             new[]{ E(EffectType.MachineSessionDuration, 2f) }),
 
-        // Add Machine per line, branching haut-gauche
+        // Add Machine per line
         new("add_slots_machine",        "Add Slot Machine",         "Add a machine to the Slots line.",
             NodeType.Upgrade, 5,    100,  2.0f, "unlock_slots",        -600,   500,
             new[]{ E(EffectType.MachineLineAddMachines, 1f, "SlotMachineLineData") }),
@@ -123,7 +120,6 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,  15000,  2.0f, "unlock_bigsixwheel", -600,  2500,
             new[]{ E(EffectType.MachineLineAddMachines, 1f, "BigSixWheelLineData") }),
 
-        // Common machines : débloquées après la dernière ligne, plus chères, ajoutent une machine à toutes les lignes
         new("add_common_machine",       "Common Machine",           "Add one machine to every unlocked line. Costs more.",
             NodeType.Upgrade, 3,  40000,  2.3f, "unlock_bigsixwheel", -1200, 2500,
             new[]{ E(EffectType.MachineLineAddMachinesAll, 1f) }),
@@ -140,7 +136,7 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,    800,  1.0f, "unlock_ml_info_panel",1200,  2100,
             new[]{ E(EffectType.UnlockMachineLinePayoutEdit, 1f) }),
 
-        // ── NPCs (DROITE) ─────────────────────────────────────────────────────
+        // NPCs (RIGHT)
         new("npc_walk_speed",       "NPC Walk Speed",               "NPCs walk faster to machines.",
             NodeType.Upgrade, 5,     20,  1.6f, "open_casino",          800,   200,
             new[]{ E(EffectType.NPCWalkSpeed, 0.1f) }),
@@ -157,7 +153,6 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,     25,  1.0f, "open_casino",          800,   400,
             new[]{ E(EffectType.UnlockNPCColors, 1f) }),
 
-        // Devrait changer la mise de base des NPCs
         new("npc_base_gains",       "NPC Base Gains Multiplier",    "Multiplies earnings from regular NPCs.",
             NodeType.Upgrade, 5,     30,  1.9f, "open_casino",          800,  -400,
             new[]{ E(EffectType.NPCBaseGainsMultiplier, 0.1f) }),
@@ -170,7 +165,7 @@ public static class UpgradeTreeSeeder
             NodeType.Upgrade, 5,    300,  1.8f, "npc_satisfaction",    2200,  -200,
             new[]{ E(EffectType.NPCDepartureSatisfactionGain, 0.5f) }),
 
-        // ── VIPs (DROITE LOIN) ────────────────────────────────────────────────
+        // VIPs (FAR RIGHT)
         new("unlock_vips",          "Unlock VIPs",                  "Enables VIP NPCs to spawn.",
             NodeType.Unlock,  1,    500,  1.0f, "npc_arrival_interval",2200,     0,
             new[]{ E(EffectType.UnlockVIPs, 1f) }),
@@ -231,7 +226,7 @@ public static class UpgradeTreeSeeder
                     string linePath = $"Assets/Data/MachineLines/{es.MachineLine}.asset";
                     lineData = AssetDatabase.LoadAssetAtPath<MachineLineData>(linePath);
                     if (lineData == null)
-                        Debug.LogWarning($"UpgradeTreeSeeder: MachineLineData introuvable à {linePath}");
+                        Debug.LogWarning($"UpgradeTreeSeeder: MachineLineData not found at {linePath}");
                 }
                 effects.Add(new UpgradeEffect { type = es.Type, valuePerLevel = es.Value, targetLine = lineData });
             }

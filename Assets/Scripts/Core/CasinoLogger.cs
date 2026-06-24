@@ -26,15 +26,15 @@ public static class CasinoLogger
     {
         _logPath = Path.Combine(Application.persistentDataPath, $"casino_log_{System.DateTime.Now:yyyy-MM-dd_HH-mm-ss}.txt");
         _writer = new StreamWriter(_logPath, append: false) { AutoFlush = true };
-        _writer.WriteLine($"=== Session Casino - {System.DateTime.Now:yyyy-MM-dd HH:mm:ss} ===");
+        _writer.WriteLine($"=== Casino Session - {System.DateTime.Now:yyyy-MM-dd HH:mm:ss} ===");
         _writer.WriteLine($"Log path: {_logPath}");
         _writer.WriteLine(new string('-', 80));
-        Debug.Log($"[CasinoLogger] Logs écrits dans : {_logPath}");
+        Debug.Log($"[CasinoLogger] Logs written to: {_logPath}");
     }
 
     public static void LogGameStart(float startMoney)
     {
-        Writer.WriteLine($"ARGENT DE DEPART : {startMoney:F1}$");
+        Writer.WriteLine($"STARTING MONEY: {startMoney:F1}$");
         Writer.WriteLine(new string('-', 80));
     }
 
@@ -47,13 +47,13 @@ public static class CasinoLogger
         _netPerLine.TryGetValue(lineName, out float prev);
         _netPerLine[lineName] = prev + casinoNet;
 
-        string outcome = win ? $"CASINO PERD  {payout:F1}$" : $"CASINO GAGNE {bet:F1}$";
-        string entry = $"[{System.DateTime.Now:HH:mm:ss}] TRANSACTION | {npcName,-20} | {lineName,-15} | {machineName,-20} | Mise: {bet,6:F1}$ | {outcome} | Net: {casinoNet,+7:F1}$ | Cumul: {_totalCasinoNet,+9:F1}$";
+        string outcome = win ? $"CASINO LOSES {payout:F1}$" : $"CASINO WINS  {bet:F1}$";
+        string entry = $"[{System.DateTime.Now:HH:mm:ss}] TRANSACTION | {npcName,-20} | {lineName,-15} | {machineName,-20} | Bet: {bet,6:F1}$ | {outcome} | Net: {casinoNet,+7:F1}$ | Total: {_totalCasinoNet,+9:F1}$";
 
         string coloredOutcome = win
-            ? $"<color=red>CASINO PERD  {payout:F1}$</color>"
-            : $"<color=green>CASINO GAGNE {bet:F1}$</color>";
-        Debug.Log($"[CASINO] {npcName} | {lineName} | {machineName} | Mise: {bet:F1}$ | {coloredOutcome} | Cumul: {_totalCasinoNet:+0.0;-0.0}$");
+            ? $"<color=red>CASINO LOSES {payout:F1}$</color>"
+            : $"<color=green>CASINO WINS  {bet:F1}$</color>";
+        Debug.Log($"[CASINO] {npcName} | {lineName} | {machineName} | Bet: {bet:F1}$ | {coloredOutcome} | Total: {_totalCasinoNet:+0.0;-0.0}$");
 
         Writer.WriteLine(entry);
     }
@@ -63,9 +63,9 @@ public static class CasinoLogger
         if (!Enabled) return;
 
         float winRate = plays > 0 ? (float)wins / plays * 100f : 0f;
-        string entry = $"[{System.DateTime.Now:HH:mm:ss}] SESSION     | {npcName,-20} quitte {lineName,-15} / {machineName,-20} | {plays} mises, {wins} victoires ({winRate:F0}%) | Net session: {sessionNetCasino:+0.0;-0.0}$";
+        string entry = $"[{System.DateTime.Now:HH:mm:ss}] SESSION     | {npcName,-20} leaves {lineName,-15} / {machineName,-20} | {plays} bets, {wins} wins ({winRate:F0}%) | Session Net: {sessionNetCasino:+0.0;-0.0}$";
 
-        Debug.Log($"[SESSION] {npcName} quitte {lineName}/{machineName} | {plays} mises, {wins} victoires ({winRate:F0}%) | Net: {sessionNetCasino:+0.0;-0.0}$");
+        Debug.Log($"[SESSION] {npcName} leaves {lineName}/{machineName} | {plays} bets, {wins} wins ({winRate:F0}%) | Net: {sessionNetCasino:+0.0;-0.0}$");
         Writer.WriteLine(entry);
         Writer.WriteLine(new string('-', 80));
     }
@@ -75,12 +75,12 @@ public static class CasinoLogger
         if (_writer == null) return;
 
         _writer.WriteLine(new string('=', 80));
-        _writer.WriteLine("NET PAR MACHINE LINE :");
+        _writer.WriteLine("NET PER MACHINE LINE:");
         foreach (var kv in _netPerLine)
             _writer.WriteLine($"  {kv.Key,-20} : {kv.Value,+10:F1}$");
         _writer.WriteLine(new string('-', 80));
-        _writer.WriteLine($"TOTAL : {_totalTransactions} transactions | Net casino final : {_totalCasinoNet:+0.0;-0.0}$");
-        _writer.WriteLine($"ARGENT FINAL : {endMoney:F1}$");
+        _writer.WriteLine($"TOTAL: {_totalTransactions} transactions | Final casino net: {_totalCasinoNet:+0.0;-0.0}$");
+        _writer.WriteLine($"FINAL MONEY: {endMoney:F1}$");
         _writer.Close();
         _writer = null;
     }

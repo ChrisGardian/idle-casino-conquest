@@ -19,10 +19,9 @@ public class NPC : MonoBehaviour
     private float _patienceMachine;
     private float _playTimer;
 
-    // Mouvement
     private Vector2 _spawnPosition;
     private Vector2 _walkTarget;
-    private bool _headingToMachine;   // true = trajet vers machine (patience suspendue)
+    private bool _headingToMachine; // true = heading to machine (total patience paused)
     private float _wanderPauseTimer;
 
     private int _totalPlays = 0;
@@ -58,7 +57,6 @@ public class NPC : MonoBehaviour
     {
         _sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
 
-        // La patience totale est suspendue pendant le trajet vers une machine
         if (!_headingToMachine)
             _patienceTotal -= Time.deltaTime;
 
@@ -74,7 +72,6 @@ public class NPC : MonoBehaviour
                 UpdatePlaying();
                 break;
             case NPCState.Leaving:
-                // Si encore sur machine : on attend la fin de session avant de partir
                 if (_assignedMachine != null)
                     UpdatePlaying();
                 else
@@ -86,7 +83,7 @@ public class NPC : MonoBehaviour
             StartLeaving();
     }
 
-    // ── Divagation aléatoire ────────────────────────────────────────────────
+    // Wander
 
     private void UpdateWander()
     {
@@ -111,7 +108,7 @@ public class NPC : MonoBehaviour
         State = NPCState.Walking;
     }
 
-    // ── Déplacement en ligne droite ─────────────────────────────────────────
+    // Movement
 
     private void UpdateWalk()
     {
@@ -149,7 +146,7 @@ public class NPC : MonoBehaviour
         transform.position += new Vector3(dir.x / dist * step, dir.y / dist * step, 0f);
     }
 
-    // ── Assignation machine ─────────────────────────────────────────────────
+    // Machine Assignment
 
     public void AssignMachine(Machine machine)
     {
@@ -168,7 +165,7 @@ public class NPC : MonoBehaviour
         State = NPCState.Playing;
     }
 
-    // ── Session de jeu ──────────────────────────────────────────────────────
+    // Game Session
 
     private void UpdatePlaying()
     {
@@ -192,17 +189,14 @@ public class NPC : MonoBehaviour
         _totalPlays++;
         _expectedWins += _assignedMachine.GetFairPayoutRate();
 
-        // Net réel du casino : positif si le NPC perd, négatif si le NPC gagne
-        // bet*(1 - winMultiplier) sur victoire NPC, bet sur défaite NPC — scalé par revenueMultiplier
         float casinoNet = win
             ? bet * (1f - _assignedMachine.data.winMultiplier) * GameModifiers.revenueMultiplier
             : bet * GameModifiers.revenueMultiplier;
         _sessionNetCasino += casinoNet;
         CurrencyManager.Instance.AddMoney(casinoNet);
 
-        // Texte flottant à chaque mise (vert = casino gagne, rouge = casino perd)
         if (FloatingTextSpawner.Instance == null)
-            Debug.LogWarning("[FloatingText] FloatingTextSpawner introuvable en scène !");
+            Debug.LogWarning("[FloatingText] FloatingTextSpawner not found in scene.");
         else
             FloatingTextSpawner.Instance.Spawn(transform.position, casinoNet);
 
@@ -225,7 +219,6 @@ public class NPC : MonoBehaviour
 
         if (State == NPCState.Leaving)
         {
-            // Patience épuisée : commence la marche vers la sortie
             SetupExitWalk();
         }
         else
@@ -236,7 +229,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    // ── Départ du casino ────────────────────────────────────────────────────
+    // Casino Exit
 
     private void StartLeaving()
     {
@@ -245,12 +238,10 @@ public class NPC : MonoBehaviour
 
         if (_assignedMachine == null)
             SetupExitWalk();
-        // Sinon : on attend que la session machine se termine (LeaveMachine appellera SetupExitWalk)
     }
 
     private void SetupExitWalk()
     {
-        // Marche vers le bord de l'écran du côté le plus proche
         bool goRight = transform.position.x >= 0f;
         MovingRight = goRight;
         _walkTarget = new Vector2(goRight ? 20f : -20f, transform.position.y);

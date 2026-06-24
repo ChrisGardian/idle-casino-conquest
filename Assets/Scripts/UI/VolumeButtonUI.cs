@@ -2,20 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Bouton de volume en haut à droite.
-/// Attache ce script sur le GameObject racine du bouton volume.
-///
-/// Hiérarchie attendue dans le Canvas :
-///   VolumeButton  (Button + ce script)
-///     VolumeIcon  (TextMeshProUGUI — affiche 🔊 ou 🔇)
-///     VolumePanel (GameObject désactivé par défaut)
-///       VolumeSlider (Slider)
-///       VolumeLabel  (TextMeshProUGUI — affiche "75 %")
-/// </summary>
 public class VolumeButtonUI : MonoBehaviour
 {
-    [Header("Références")]
+    [Header("References")]
     [SerializeField] private GameObject _volumePanel;
     [SerializeField] private Slider     _volumeSlider;
     [SerializeField] private TextMeshProUGUI _volumeLabel;
@@ -32,7 +21,6 @@ public class VolumeButtonUI : MonoBehaviour
         UpdateLabel();
     }
 
-    /// <summary>Appelé par le Button (OnClick).</summary>
     public void TogglePanel()
     {
         _panelOpen = !_panelOpen;

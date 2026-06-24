@@ -8,7 +8,7 @@ public class MachineLine : MonoBehaviour
     public MachineLineData data;
 
     [Header("Placement")]
-    [Tooltip("Point de départ du placement des machines (coin gauche de la ligne)")]
+    [Tooltip("Starting point for machine placement (left edge of the line)")]
     [SerializeField] private Transform _origin;
     [SerializeField] private float _machineSpacing = 2.5f;
     [SerializeField] private Transform _machinesContainer;
@@ -71,7 +71,7 @@ public class MachineLine : MonoBehaviour
         MachineLineManager.Instance?.UnregisterLine(this);
     }
 
-    // ── Unlock ────────────────────────────────────────────────────────────────
+    // Unlock
 
     public bool Unlock()
     {
@@ -84,7 +84,7 @@ public class MachineLine : MonoBehaviour
         return true;
     }
 
-    // ── Add Machine ───────────────────────────────────────────────────────────
+    // Add Machine
 
     public void AddMachine() => SpawnMachine(locked: false);
 
@@ -94,7 +94,7 @@ public class MachineLine : MonoBehaviour
             SpawnMachine(locked: false);
     }
 
-    // ── Upgrade ───────────────────────────────────────────────────────────────
+    // Upgrade
 
     public bool CanUpgrade()
     {
@@ -111,7 +111,7 @@ public class MachineLine : MonoBehaviour
         return true;
     }
 
-    // ── Payout Override (configuration ligne) ────────────────────────────────
+    // Payout Override
 
     private bool _usePayoutOverride = false;
     private float _payoutOverride = 0.35f;
@@ -127,7 +127,7 @@ public class MachineLine : MonoBehaviour
 
     public void ClearPayoutOverride() => _usePayoutOverride = false;
 
-    // ── Internal ──────────────────────────────────────────────────────────────
+    // Internal
 
     private void SpawnMachine(bool locked)
     {

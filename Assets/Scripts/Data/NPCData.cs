@@ -7,30 +7,30 @@ public class NPCData : ScriptableObject
     public bool isVIP;
 
     [Header("Patience")]
-    [Tooltip("Durée de patience totale du NPC en secondes")]
+    [Tooltip("Total patience duration in seconds")]
     public float patienceTotal = 60f;
 
     [Header("Economy")]
-    [Tooltip("Mise de base du NPC")]
+    [Tooltip("Base bet amount for this NPC")]
     public float baseBetAmount = 10f;
 
     [Header("Gameplay")]
-    [Tooltip("Gain de patience par victoire (avant multiplicateur machine)")]
+    [Tooltip("Patience gained per win (before machine multiplier)")]
     public float basePatienceWinGain = 0.5f;
 
-    [Tooltip("Intervalle entre chaque mise en secondes")]
+    [Tooltip("Interval between each bet in seconds")]
     public float playInterval = 2f;
 
     [Header("Movement")]
-    [Tooltip("Vitesse de déplacement (marche vers machine et sortie)")]
+    [Tooltip("Walk speed (towards machine and towards exit)")]
     public float walkSpeed = 2f;
 
-    [Tooltip("Rayon de divagation autour du point de spawn")]
+    [Tooltip("Wander radius around spawn point")]
     public float wanderRadius = 3f;
 
-    [Tooltip("Pause minimale entre deux déplacements aléatoires (secondes)")]
+    [Tooltip("Minimum pause between two random moves (seconds)")]
     public float wanderPauseMin = 1f;
 
-    [Tooltip("Pause maximale entre deux déplacements aléatoires (secondes)")]
+    [Tooltip("Maximum pause between two random moves (seconds)")]
     public float wanderPauseMax = 3f;
 }

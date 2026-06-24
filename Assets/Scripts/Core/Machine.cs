@@ -8,7 +8,7 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public MachineData data;
 
     [Header("NPC Stand Point")]
-    [Tooltip("Point où le NPC se place pour jouer. Si vide, utilise position machine - 0.6 en Y.")]
+    [Tooltip("Position where the NPC stands to play. If empty, defaults to machine position - 0.6 on Y.")]
     [SerializeField] private Transform _standPoint;
 
     public bool HasFreeSlot => _occupants.Count < data.totalSlots + (Line != null ? Line.BonusSlotsPerMachine : 0);
@@ -71,7 +71,6 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         NPCManagementSystem.Instance.OnMachineSlotFreed(this);
     }
 
-    // Taux attendu par le NPC : base + upgrades, sans le slider joueur
     public float GetFairPayoutRate()
     {
         float rate = data.payoutRate;
@@ -79,7 +78,6 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return rate;
     }
 
-    // Retourne si le NPC a gagné et le montant concerné (mise * winMultiplier si victoire, mise si défaite)
     public (bool win, float amount) Play(float betAmount)
     {
         float payoutRate = (Line != null && Line.UsePayoutOverride) ? Line.PayoutOverride : data.payoutRate;

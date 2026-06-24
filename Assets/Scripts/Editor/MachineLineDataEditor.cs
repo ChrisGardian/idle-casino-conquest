@@ -9,20 +9,19 @@ public class MachineLineDataEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        // Affiche l'Inspector normal du SO
         DrawDefaultInspector();
 
         EditorGUILayout.Space(10);
-        EditorGUILayout.LabelField("── Génération automatique ──", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Auto-Generate", EditorStyles.boldLabel);
 
-        _numberOfLevels = EditorGUILayout.IntField("Nombre de niveaux", _numberOfLevels);
-        _baseCost = EditorGUILayout.FloatField("Coût de base", _baseCost);
+        _numberOfLevels = EditorGUILayout.IntField("Number of levels", _numberOfLevels);
+        _baseCost = EditorGUILayout.FloatField("Base cost", _baseCost);
 
-        if (GUILayout.Button("Générer les listes"))
+        if (GUILayout.Button("Generate lists"))
         {
             MachineLineData lineData = (MachineLineData)target;
 
-            Undo.RecordObject(lineData, "Générer listes MachineLineData");
+            Undo.RecordObject(lineData, "Generate MachineLineData Lists");
 
             lineData.upgradeCosts = CreateListUpgradeCost(_numberOfLevels, _baseCost);
             lineData.maxMachinesPerLevel = CreateListMaxMachines(_numberOfLevels);
@@ -31,7 +30,7 @@ public class MachineLineDataEditor : Editor
             EditorUtility.SetDirty(lineData);
             AssetDatabase.SaveAssets();
 
-            Debug.Log($"[MachineLineData] Listes générées pour {lineData.lineTypeName} — {_numberOfLevels} niveaux.");
+            Debug.Log($"[MachineLineData] Lists generated for {lineData.lineTypeName} — {_numberOfLevels} levels.");
         }
     }
 

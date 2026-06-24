@@ -12,14 +12,14 @@ public class NPCSpawner : MonoBehaviour
     public float firstSpawnDelay = 3f;
 
     [Header("Spawn Tuning")]
-    [Tooltip("Exposant de la popularity (0.5 = racine carrée, atténue l'effet)")]
+    [Tooltip("Popularity exponent (0.5 = square root, softens the effect)")]
     [Range(0.1f, 1f)]
     public float popularityExponent = 0.5f;
-    [Tooltip("Multiplicateur d'intervalle quand toutes les places sont occupées (> 1 = plus lent)")]
+    [Tooltip("Spawn interval multiplier when all slots are occupied (> 1 = slower)")]
     public float crowdedIntervalMultiplier = 1.5f;
-    [Tooltip("Multiplicateur d'intervalle quand toutes les places sont libres (< 1 = plus rapide)")]
+    [Tooltip("Spawn interval multiplier when all slots are free (< 1 = faster)")]
     public float spaciousIntervalMultiplier = 0.75f;
-    [Tooltip("Intervalle minimum garanti entre deux spawns (sécurité anti-boucle infinie)")]
+    [Tooltip("Minimum guaranteed interval between spawns (prevents infinite loop)")]
     public float minSpawnInterval = 0.5f;
 
     [Range(0f, 1f)]
@@ -107,5 +107,4 @@ public class NPCSpawner : MonoBehaviour
 
         return Mathf.Max(minSpawnInterval, interval);
     }
-
 }
