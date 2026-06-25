@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -91,9 +91,7 @@ public static class UpgradeTreeSeeder
             NodeType.Unlock,  1,  10000,  1.0f, "unlock_craps",           0,  2500,
             new[]{ E(EffectType.UnlockMachineLine, 1f, "BigSixWheelLineData") }),
 
-        new("ml_payout_rate",       "Payout Rate",                  "Increases the base payout rate of machines.",
-            NodeType.Upgrade, 5,     50,  1.9f, "unlock_slots",         600,   600,
-            new[]{ E(EffectType.MachinePayoutRate, 0.02f) }),
+        // new("ml_payout_rate", "Payout Rate", ...) // TOFIX: see MachineLine.BonusPayoutRate
 
         new("ml_session_duration",  "Session Duration",             "Extends machine session duration.",
             NodeType.Upgrade, 5,     40,  1.7f, "unlock_slots",         600,  1100,

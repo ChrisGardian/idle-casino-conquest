@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum EffectType
 {
-    // ── Unlocks structurels ────────────────────────────
+    // Unlocks structurels
     UnlockNPCSpawning,
     UnlockMachineLine,
     UnlockVIPs,
@@ -16,14 +16,14 @@ public enum EffectType
     UnlockCasinoExpansion,
     UnlockCasinoDoor,
 
-    // ── Machine Lines ──────────────────────────────────
+    // Machine Lines
     MachineLineAddMachines,
     MachineLineAddMachinesAll,
     MachineLineSlotsPerMachine,
-    MachinePayoutRate,
+    // MachinePayoutRate, // TOFIX: see MachineLine.BonusPayoutRate
     MachineSessionDuration,
 
-    // ── NPCs ───────────────────────────────────────────
+    // NPCs
     NPCArrivalInterval,
     NPCWalkSpeed,
     NPCPatience,
@@ -31,14 +31,14 @@ public enum EffectType
     NPCSatisfactionThreshold,
     NPCDepartureSatisfactionGain,
 
-    // ── VIPs ───────────────────────────────────────────
+    // VIPs
     VIPSpawnChance,
     VIPWalkSpeed,
     VIPPatience,
     VIPBaseGainsMultiplier,
     VIPReferralChance,
 
-    // ── Global ─────────────────────────────────────────
+    // Global
     GlobalRevenueMultiplier,
     CasinoReputationMultiplier,
 }

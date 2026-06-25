@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -125,13 +125,14 @@ public class UpgradeTreeManager : MonoBehaviour
                         if (l.IsUnlocked) l.AddMachinesFromUpgrade((int)effect.valuePerLevel);
                 break;
 
-            case EffectType.MachinePayoutRate:
-                if (line != null)
-                    line.AddBonusPayoutRate(effect.valuePerLevel);
-                else if (MachineLineManager.Instance != null)
-                    foreach (MachineLine l in MachineLineManager.Instance.Lines)
-                        l.AddBonusPayoutRate(effect.valuePerLevel);
-                break;
+            // TOFIX: MachinePayoutRate increases NPC win probability, reducing casino revenue — logic is inverted, see MachineLine.BonusPayoutRate
+            // case EffectType.MachinePayoutRate:
+            //     if (line != null)
+            //         line.AddBonusPayoutRate(effect.valuePerLevel);
+            //     else if (MachineLineManager.Instance != null)
+            //         foreach (MachineLine l in MachineLineManager.Instance.Lines)
+            //             l.AddBonusPayoutRate(effect.valuePerLevel);
+            //     break;
 
             case EffectType.GlobalRevenueMultiplier:
                 GameModifiers.revenueMultiplier += effect.valuePerLevel;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -74,14 +74,14 @@ public class Machine : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public float GetFairPayoutRate()
     {
         float rate = data.payoutRate;
-        if (Line != null) rate = Mathf.Clamp01(rate + Line.BonusPayoutRate);
+        // if (Line != null) rate = Mathf.Clamp01(rate + Line.BonusPayoutRate); // TOFIX: see MachineLine.BonusPayoutRate
         return rate;
     }
 
     public (bool win, float amount) Play(float betAmount)
     {
         float payoutRate = (Line != null && Line.UsePayoutOverride) ? Line.PayoutOverride : data.payoutRate;
-        if (Line != null) payoutRate = Mathf.Clamp01(payoutRate + Line.BonusPayoutRate);
+        // if (Line != null) payoutRate = Mathf.Clamp01(payoutRate + Line.BonusPayoutRate); // TOFIX: see MachineLine.BonusPayoutRate
         bool win = Random.value < payoutRate;
         float amount = win ? betAmount * data.winMultiplier : betAmount;
 

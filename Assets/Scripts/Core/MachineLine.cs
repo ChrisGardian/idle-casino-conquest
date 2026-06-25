@@ -44,15 +44,16 @@ public class MachineLine : MonoBehaviour
     }
 
     private readonly List<Machine> _machines = new();
-    private float _bonusPayoutRate = 0f;
+    // TOFIX: BonusPayoutRate increases NPC win probability, which reduces casino revenue — logic is inverted, should boost house edge instead
+    // private float _bonusPayoutRate = 0f;
     private float _bonusSessionDuration = 0f;
     private int _bonusSlotsPerMachine = 0;
 
-    public float BonusPayoutRate => _bonusPayoutRate;
+    // public float BonusPayoutRate => _bonusPayoutRate;
     public float BonusSessionDuration => _bonusSessionDuration;
     public int BonusSlotsPerMachine => _bonusSlotsPerMachine;
 
-    public void AddBonusPayoutRate(float bonus) => _bonusPayoutRate = Mathf.Clamp01(_bonusPayoutRate + bonus);
+    // public void AddBonusPayoutRate(float bonus) => _bonusPayoutRate = Mathf.Clamp01(_bonusPayoutRate + bonus);
     public void AddBonusSessionDuration(float bonus) => _bonusSessionDuration += bonus;
     public void AddBonusSlotsPerMachine(int bonus) => _bonusSlotsPerMachine += bonus;
 
