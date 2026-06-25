@@ -59,7 +59,6 @@ public class MachineLineInfoPopup : MonoBehaviour
     {
         _infoText.text =
             $"<b>Machines</b>  {_line.MachineCount}\n" +
-            $"<b>Level</b>  {_line.UpgradeLevel}\n" +
             $"<b>Active NPCs</b>  {_line.TotalNPCsOnLine}\n" +
             $"<b>Total Revenue</b>  {_line.TotalRevenue:F0}$\n" +
             $"<b>Revenue/min</b>  {_line.TotalRevenuePerMinute:F1}$/min";
